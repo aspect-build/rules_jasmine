@@ -1,25 +1,27 @@
-# Declare the local Bazel workspace.
-workspace(
-    # If your ruleset is "official"
-    # (i.e. is in the bazelbuild GitHub org)
-    # then this should just be named "rules_mylang"
-    # see https://docs.bazel.build/versions/main/skylark/deploying.html#workspace
-    name = "com_myorg_rules_mylang",
-)
+workspace(name = "aspect_rules_jasmine")
 
-load(":internal_deps.bzl", "rules_mylang_internal_deps")
+load(":internal_deps.bzl", "rules_jasmine_internal_deps")
 
 # Fetch deps needed only locally for development
-rules_mylang_internal_deps()
+rules_jasmine_internal_deps()
 
-load("//mylang:repositories.bzl", "mylang_register_toolchains", "rules_mylang_dependencies")
+load("//jasmine:dependencies.bzl", "rules_jasmine_dependencies")
 
 # Fetch dependencies which users need as well
-rules_mylang_dependencies()
+rules_jasmine_dependencies()
 
-mylang_register_toolchains(
-    name = "mylang1_14",
-    mylang_version = "1.14.2",
+load("@rules_nodejs//nodejs:repositories.bzl", "DEFAULT_NODE_VERSION", "nodejs_register_toolchains")
+
+nodejs_register_toolchains(
+    name = "nodejs",
+    node_version = DEFAULT_NODE_VERSION,
+)
+
+load("//jasmine:repositories.bzl", "rules_jasmine_repositories", "LATEST_VERSION")
+
+rules_jasmine_repositories(
+    name = "jasmine",
+    jasmine_version = LATEST_VERSION
 )
 
 # For running our own unit tests
