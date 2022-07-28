@@ -66,6 +66,7 @@ def rules_mylang_internal_deps():
     maybe(
         http_archive,
         name = "aspect_bazel_lib",
-        sha256 = "8c8cf0554376746e2451de85c4a7670cc8d7400c1f091574c1c1ed2a65021a4c",
-        url = "https://github.com/aspect-build/bazel-lib/releases/download/v0.2.6/bazel_lib-0.2.6.tar.gz",
+        sha256 = "57d997d473893605cf8025d4200cca91921e972a73b235d53116cba80c6b0a72",
+        strip_prefix = "bazel-lib-1.8.0",
+        url = "https://github.com/aspect-build/bazel-lib/archive/refs/tags/v1.8.0.tar.gz",
     )
