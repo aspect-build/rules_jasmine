@@ -1,6 +1,6 @@
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 
-exports_files(["runner.js"])
+exports_files(["runner.js", "jasmine_test.bzl"])
 
 # gazelle:exclude v*.*.*/*
 
@@ -9,4 +9,11 @@ bzl_library(
     srcs = ["versions.bzl"],
     visibility = ["//jasmine:__subpackages__"],
     deps = [],
+)
+
+bzl_library(
+    name = "jasmine_test",
+    srcs = ["jasmine_test.bzl"],
+    visibility = ["//jasmine:__subpackages__"],
+    deps = ["@aspect_rules_js//js:libs"],
 )

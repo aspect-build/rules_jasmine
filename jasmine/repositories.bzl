@@ -22,9 +22,10 @@ load("@aspect_bazel_lib//lib:copy_file.bzl", "copy_file")
 npm_link_all_packages(name = "node_modules")
 
 copy_file(
-    name = "copy_runner",
+    name = "entrypoint",
     src = "@aspect_rules_jasmine//jasmine/private:runner.js",
     out = "runner.js",
+    visibility = ["//visibility:public"],
 )
 
 js_binary(
