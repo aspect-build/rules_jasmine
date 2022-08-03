@@ -16,7 +16,7 @@ http_archive(
     name = "aspect_rules_jasmine",
     sha256 = "${SHA}",
     strip_prefix = "${PREFIX}",
-    url = "https://github.com/aspect/rules_jasmine/archive/refs/tags/${TAG}.tar.gz",
+    url = "https://github.com/aspect-build/rules_jasmine/archive/refs/tags/${TAG}.tar.gz",
 )
 EOF
 
