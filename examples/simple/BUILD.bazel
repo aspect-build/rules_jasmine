@@ -1,0 +1,10 @@
+load("@aspect_rules_jasmine//jasmine:defs.bzl", "jasmine_test")
+
+jasmine_test(
+    name = "test",
+    data = [
+        "lib.js",
+        "lib.spec.js",
+        "package.json",
+    ],
+)

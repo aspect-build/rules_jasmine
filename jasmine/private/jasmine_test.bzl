@@ -23,8 +23,8 @@ def _impl(ctx):
     files.extend(ctx.files.data)
 
     fixed_args = [
-        "*.spec.*js",
-        "*.test.*js"
+        "**/*.spec.*js",
+        "**/*.test.*js"
     ]
 
     if ctx.attr.config:

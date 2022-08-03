@@ -29,7 +29,7 @@ bzl_library(
     srcs = ["defs.bzl"],
     visibility = ["//visibility:public"],
     deps = [
-        "@aspect_rules_jasmine//jasmine/private:jasmine_test",
+        "//jasmine/private:jasmine_test",
         "@aspect_rules_js//js:libs",
     ],
 )
