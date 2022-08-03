@@ -21,3 +21,24 @@ jasmine_test(
     config = "config_file.js",
     chdir = package_name(),
 )
+
+jasmine_test(
+    name = "shard",
+    data = ["shard.test.js"],
+    shard_count = 3,
+    args = [
+        "**/*.test.js",
+        "--random=false"
+    ]
+)
+
+jasmine_test(
+    name = "failing_shard",
+    data = ["failing_shard.test.js"],
+    expected_exit_code = 3,
+    shard_count = 2,
+    args = [
+        "**/*.test.js",
+        "--random=false"
+    ]
+)
