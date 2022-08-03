@@ -13,13 +13,13 @@ npx pnpm install "jasmine@$version"  --lockfile-only
 touch BUILD
 cat >WORKSPACE <<EOF
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-
 http_archive(
     name = "aspect_rules_js",
     sha256 = "f2b36aac9d3368e402c9083c884ad9b26ca6fa21e83b53c12482d6cb2e949451",
     strip_prefix = "rules_js-1.0.0-rc.4",
     url = "https://github.com/aspect-build/rules_js/archive/refs/tags/v1.0.0-rc.4.tar.gz",
 )
+
 
 load("@aspect_rules_js//js:repositories.bzl", "rules_js_dependencies")
 
