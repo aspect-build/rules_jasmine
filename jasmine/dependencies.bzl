@@ -28,17 +28,17 @@ def rules_jasmine_dependencies():
     maybe(
         http_archive,
         name = "aspect_bazel_lib",
-        sha256 = "58fab45b4419a5eaa340489d567a013e80334c8e4bd998288149cd7e39437586",
-        strip_prefix = "bazel-lib-1.7.0",
-        url = "https://github.com/aspect-build/bazel-lib/archive/refs/tags/v1.7.0.tar.gz",
+        sha256 = "e034e4aea098c91ac05ac7e08f01a302275378a0bc0814c4939e96552c912212",
+        strip_prefix = "bazel-lib-1.9.2",
+        url = "https://github.com/aspect-build/bazel-lib/archive/refs/tags/v1.9.2.tar.gz",
     )
 
     maybe(
         http_archive,
         name = "aspect_rules_js",
-        sha256 = "a6d31c98f30eb503e836201d723b3164c5e07ba34553d260f71720a819d8ba4c",
-        strip_prefix = "rules_js-1.0.0-rc.2",
-        url = "https://github.com/aspect-build/rules_js/archive/refs/tags/v1.0.0-rc.2.tar.gz",
+        sha256 = "f2b36aac9d3368e402c9083c884ad9b26ca6fa21e83b53c12482d6cb2e949451",
+        strip_prefix = "rules_js-1.0.0-rc.4",
+        url = "https://github.com/aspect-build/rules_js/archive/refs/tags/v1.0.0-rc.4.tar.gz",
     )
 
     maybe(
