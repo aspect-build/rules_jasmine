@@ -35,18 +35,18 @@ nodejs_register_toolchains(
 load("@aspect_rules_js//npm:npm_import.bzl", "npm_translate_lock")
 
 npm_translate_lock(
-    name = "npm",
+    name = "npm_aspect_rules_jasmine",
     pnpm_lock = "//:pnpm-lock.yaml",
     public_hoist_packages = {
         "jasmine-core": [""]
     }
 )
 
-load("@npm//:repositories.bzl", "npm_repositories")
+load("@npm_aspect_rules_jasmine//:repositories.bzl", "npm_repositories")
 
 npm_repositories()
 EOF
 bazel info output_base
-bazel fetch @npm//:all
-cp $(bazel info output_base)/external/npm/{defs,repositories}.bzl "$out"
+bazel fetch @npm_aspect_rules_jasmine//:all
+cp $(bazel info output_base)/external/npm_aspect_rules_jasmine/{defs,repositories}.bzl "$out"
 echo "Mirrored jasmine version $version to $out. Now add it to jasmine/private/versions.bzl"

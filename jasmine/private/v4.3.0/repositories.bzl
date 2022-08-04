@@ -5,7 +5,7 @@ load("@aspect_rules_js//npm:npm_import.bzl", "npm_import")
 def npm_repositories():
     "Generated npm_import repository rules corresponding to npm packages in //:pnpm-lock.yaml"
     npm_import(
-        name = "npm__balanced-match__1.0.2",
+        name = "npm_aspect_rules_jasmine__balanced-match__1.0.2",
         root_package = "",
         link_workspace = "",
         link_packages = {},
@@ -18,7 +18,7 @@ def npm_repositories():
     )
 
     npm_import(
-        name = "npm__brace-expansion__1.1.11",
+        name = "npm_aspect_rules_jasmine__brace-expansion__1.1.11",
         root_package = "",
         link_workspace = "",
         link_packages = {},
@@ -37,7 +37,7 @@ def npm_repositories():
     )
 
     npm_import(
-        name = "npm__concat-map__0.0.1",
+        name = "npm_aspect_rules_jasmine__concat-map__0.0.1",
         root_package = "",
         link_workspace = "",
         link_packages = {},
@@ -50,7 +50,7 @@ def npm_repositories():
     )
 
     npm_import(
-        name = "npm__fs.realpath__1.0.0",
+        name = "npm_aspect_rules_jasmine__fs.realpath__1.0.0",
         root_package = "",
         link_workspace = "",
         link_packages = {},
@@ -63,7 +63,7 @@ def npm_repositories():
     )
 
     npm_import(
-        name = "npm__glob__7.2.3",
+        name = "npm_aspect_rules_jasmine__glob__7.2.3",
         root_package = "",
         link_workspace = "",
         link_packages = {},
@@ -94,7 +94,7 @@ def npm_repositories():
     )
 
     npm_import(
-        name = "npm__inflight__1.0.6",
+        name = "npm_aspect_rules_jasmine__inflight__1.0.6",
         root_package = "",
         link_workspace = "",
         link_packages = {},
@@ -113,7 +113,7 @@ def npm_repositories():
     )
 
     npm_import(
-        name = "npm__inherits__2.0.4",
+        name = "npm_aspect_rules_jasmine__inherits__2.0.4",
         root_package = "",
         link_workspace = "",
         link_packages = {},
@@ -126,7 +126,7 @@ def npm_repositories():
     )
 
     npm_import(
-        name = "npm__jasmine-core__4.3.0",
+        name = "npm_aspect_rules_jasmine__jasmine-core__4.3.0",
         root_package = "",
         link_workspace = "",
         link_packages = {
@@ -141,7 +141,7 @@ def npm_repositories():
     )
 
     npm_import(
-        name = "npm__jasmine__4.3.0",
+        name = "npm_aspect_rules_jasmine__jasmine__4.3.0",
         root_package = "",
         link_workspace = "",
         link_packages = {
@@ -172,7 +172,7 @@ def npm_repositories():
     )
 
     npm_import(
-        name = "npm__minimatch__3.1.2",
+        name = "npm_aspect_rules_jasmine__minimatch__3.1.2",
         root_package = "",
         link_workspace = "",
         link_packages = {},
@@ -191,7 +191,7 @@ def npm_repositories():
     )
 
     npm_import(
-        name = "npm__once__1.4.0",
+        name = "npm_aspect_rules_jasmine__once__1.4.0",
         root_package = "",
         link_workspace = "",
         link_packages = {},
@@ -208,7 +208,7 @@ def npm_repositories():
     )
 
     npm_import(
-        name = "npm__path-is-absolute__1.0.1",
+        name = "npm_aspect_rules_jasmine__path-is-absolute__1.0.1",
         root_package = "",
         link_workspace = "",
         link_packages = {},
@@ -221,7 +221,7 @@ def npm_repositories():
     )
 
     npm_import(
-        name = "npm__wrappy__1.0.2",
+        name = "npm_aspect_rules_jasmine__wrappy__1.0.2",
         root_package = "",
         link_workspace = "",
         link_packages = {},

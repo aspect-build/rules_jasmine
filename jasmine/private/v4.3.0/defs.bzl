@@ -2,19 +2,19 @@
 
 # buildifier: disable=bzl-visibility
 load("@aspect_rules_js//js:defs.bzl", _js_library = "js_library")
-load("@npm__balanced-match__1.0.2__links//:defs.bzl", store_0 = "npm_imported_package_store")
-load("@npm__brace-expansion__1.1.11__links//:defs.bzl", store_1 = "npm_imported_package_store")
-load("@npm__concat-map__0.0.1__links//:defs.bzl", store_2 = "npm_imported_package_store")
-load("@npm__fs.realpath__1.0.0__links//:defs.bzl", store_3 = "npm_imported_package_store")
-load("@npm__glob__7.2.3__links//:defs.bzl", store_4 = "npm_imported_package_store")
-load("@npm__inflight__1.0.6__links//:defs.bzl", store_5 = "npm_imported_package_store")
-load("@npm__inherits__2.0.4__links//:defs.bzl", store_6 = "npm_imported_package_store")
-load("@npm__jasmine-core__4.3.0__links//:defs.bzl", link_7 = "npm_link_imported_package_store", store_7 = "npm_imported_package_store")
-load("@npm__jasmine__4.3.0__links//:defs.bzl", link_8 = "npm_link_imported_package_store", store_8 = "npm_imported_package_store")
-load("@npm__minimatch__3.1.2__links//:defs.bzl", store_9 = "npm_imported_package_store")
-load("@npm__once__1.4.0__links//:defs.bzl", store_10 = "npm_imported_package_store")
-load("@npm__path-is-absolute__1.0.1__links//:defs.bzl", store_11 = "npm_imported_package_store")
-load("@npm__wrappy__1.0.2__links//:defs.bzl", store_12 = "npm_imported_package_store")
+load("@npm_aspect_rules_jasmine__balanced-match__1.0.2__links//:defs.bzl", store_0 = "npm_imported_package_store")
+load("@npm_aspect_rules_jasmine__brace-expansion__1.1.11__links//:defs.bzl", store_1 = "npm_imported_package_store")
+load("@npm_aspect_rules_jasmine__concat-map__0.0.1__links//:defs.bzl", store_2 = "npm_imported_package_store")
+load("@npm_aspect_rules_jasmine__fs.realpath__1.0.0__links//:defs.bzl", store_3 = "npm_imported_package_store")
+load("@npm_aspect_rules_jasmine__glob__7.2.3__links//:defs.bzl", store_4 = "npm_imported_package_store")
+load("@npm_aspect_rules_jasmine__inflight__1.0.6__links//:defs.bzl", store_5 = "npm_imported_package_store")
+load("@npm_aspect_rules_jasmine__inherits__2.0.4__links//:defs.bzl", store_6 = "npm_imported_package_store")
+load("@npm_aspect_rules_jasmine__jasmine-core__4.3.0__links//:defs.bzl", link_7 = "npm_link_imported_package_store", store_7 = "npm_imported_package_store")
+load("@npm_aspect_rules_jasmine__jasmine__4.3.0__links//:defs.bzl", link_8 = "npm_link_imported_package_store", store_8 = "npm_imported_package_store")
+load("@npm_aspect_rules_jasmine__minimatch__3.1.2__links//:defs.bzl", store_9 = "npm_imported_package_store")
+load("@npm_aspect_rules_jasmine__once__1.4.0__links//:defs.bzl", store_10 = "npm_imported_package_store")
+load("@npm_aspect_rules_jasmine__path-is-absolute__1.0.1__links//:defs.bzl", store_11 = "npm_imported_package_store")
+load("@npm_aspect_rules_jasmine__wrappy__1.0.2__links//:defs.bzl", store_12 = "npm_imported_package_store")
 
 def npm_link_all_packages(name = "node_modules", imported_links = []):
     """Generated list of npm_link_package() target generators and first-party linked packages corresponding to the packages in //:pnpm-lock.yaml
@@ -43,7 +43,7 @@ def npm_link_all_packages(name = "node_modules", imported_links = []):
     is_root = native.package_name() == root_package
     link = native.package_name() in link_packages
     if not is_root and not link:
-        msg = "The npm_link_all_packages() macro loaded from @npm//:defs.bzl and called in bazel package '%s' may only be called in the bazel package(s) corresponding to the root package '' and packages ['']" % native.package_name()
+        msg = "The npm_link_all_packages() macro loaded from @npm_aspect_rules_jasmine//:defs.bzl and called in bazel package '%s' may only be called in the bazel package(s) corresponding to the root package '' and packages ['']" % native.package_name()
         fail(msg)
     link_targets = []
     scope_targets = {}
