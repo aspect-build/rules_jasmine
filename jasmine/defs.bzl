@@ -18,11 +18,10 @@ def jasmine_test(jasmine_repository = "jasmine", **kwargs):
             "@aspect_rules_js//js/private:enable_runfiles": True,
             "//conditions:default": False,
         }),
-        entry_point = "@{}//:entrypoint".format(jasmine_repository),
+        entry_point = "@{}//:jasmine_entrypoint".format(jasmine_repository),
         data = kwargs.pop("data", []) + [
             "@{}//:node_modules/jasmine".format(jasmine_repository),
             "@{}//:node_modules/jasmine-core".format(jasmine_repository),
         ],
-        chdir = kwargs.pop("chdir", native.package_name()),
         **kwargs
     )
