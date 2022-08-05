@@ -4,6 +4,14 @@ load("//jasmine:defs.bzl", "jasmine_test")
 versions_test_suite(name = "versions_test")
 
 jasmine_test(
+    name = "junit_reporter",
+    data = ["junit_reporter.test.js"],
+    args = [
+        "**/*.test.js"
+    ]
+)
+
+jasmine_test(
     name = "filtering",
     data = ["filtering.test.js"],
     expected_exit_code = 2,
