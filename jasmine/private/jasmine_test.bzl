@@ -1,5 +1,6 @@
 load("@aspect_rules_js//js:libs.bzl", "js_binary_lib", "js_lib_helpers")
-load("@bazel_skylib//lib:dicts.bzl", "dicts")   
+load("@bazel_skylib//lib:dicts.bzl", "dicts")
+load("@bazel_skylib//lib:paths.bzl", "paths")
 
 _attrs = dicts.add(js_binary_lib.attrs, {
     "entry_point": attr.label(
@@ -28,10 +29,10 @@ def _impl(ctx):
     ]
 
     if ctx.attr.config:
-        fixed_args.append(
-            "--config",
-            ctx.file.config.short_path,
-        )
+        config_file = ctx.file.config.short_path
+        if ctx.attr.chdir:
+            config_file = paths.relativize(ctx.file.config.short_path, ctx.attr.chdir)
+        fixed_args.append("--config=%s" % config_file)
         files.append(ctx.file.config)
 
     launcher = js_binary_lib.create_launcher(

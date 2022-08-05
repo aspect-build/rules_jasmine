@@ -1,3 +1,30 @@
 load(":versions_test.bzl", "versions_test_suite")
+load("//jasmine:defs.bzl", "jasmine_test")
 
 versions_test_suite(name = "versions_test")
+
+jasmine_test(
+    name = "filtering",
+    data = ["filtering.test.js"],
+    expected_exit_code = 2,
+)
+
+jasmine_test(
+    name = "config",
+    data = ["config_file.test.js"],
+    config = "config_file.js"
+)
+
+jasmine_test(
+    name = "config_no_chdir",
+    data = ["config_file.test.js"],
+    config = "config_file.js",
+    chdir = None,
+)
+
+jasmine_test(
+    name = "config_chdir_dot",
+    data = ["config_file.test.js"],
+    config = "config_file.js",
+    chdir = ".",
+)
