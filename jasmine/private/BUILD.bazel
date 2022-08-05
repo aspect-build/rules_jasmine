@@ -10,3 +10,13 @@ bzl_library(
     visibility = ["//jasmine:__subpackages__"],
     deps = [],
 )
+
+bzl_library(
+    name = "jasmine_test",
+    # keep
+    srcs = [
+        "jasmine_test.bzl",
+    ],
+    visibility = ["//jasmine:__subpackages__"],
+    deps = ["@aspect_rules_js//js:libs"],
+)
