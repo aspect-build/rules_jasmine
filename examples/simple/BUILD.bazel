@@ -7,4 +7,6 @@ jasmine_test(
         "lib.spec.js",
         "package.json",
     ],
+    args = ["*.spec.js"],
+    chdir = package_name(),
 )

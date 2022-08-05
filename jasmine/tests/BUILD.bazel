@@ -16,15 +16,8 @@ jasmine_test(
 )
 
 jasmine_test(
-    name = "config_no_chdir",
+    name = "config_chdir_package_name",
     data = ["config_file.test.js"],
     config = "config_file.js",
-    chdir = None,
-)
-
-jasmine_test(
-    name = "config_chdir_dot",
-    data = ["config_file.test.js"],
-    config = "config_file.js",
-    chdir = ".",
+    chdir = package_name(),
 )

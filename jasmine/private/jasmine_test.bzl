@@ -14,7 +14,6 @@ _attrs = dicts.add(js_binary_lib.attrs, {
 
 
 def _impl(ctx):
-
     files = js_lib_helpers.gather_files_from_js_providers(
         targets = ctx.attr.data,
         include_transitive_sources = ctx.attr.include_transitive_sources,
@@ -23,11 +22,7 @@ def _impl(ctx):
     )
     files.extend(ctx.files.data)
 
-    fixed_args = [
-        "**/*.spec.*js",
-        "**/*.test.*js"
-    ]
-
+    fixed_args = []
     if ctx.attr.config:
         config_file = ctx.file.config.short_path
         if ctx.attr.chdir:
