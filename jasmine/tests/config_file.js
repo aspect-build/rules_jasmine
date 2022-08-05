@@ -1,6 +1,6 @@
 module.exports = {
     random: false,
     spec_files: [
-        "**/config.test.js"
+        "**/config_file.test.js"
     ],
 };
