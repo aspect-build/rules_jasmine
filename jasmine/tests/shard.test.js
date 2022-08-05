@@ -1,4 +1,4 @@
-describe('test sharding with explicit isolation failures', () => {
+describe('assert sharding runs specs(it blocks) in the expected order and partitions equally over the available shards', () => {
     let testIsolationFailure = 0;
     it('should run the first spec first', () => {
       testIsolationFailure = 1;

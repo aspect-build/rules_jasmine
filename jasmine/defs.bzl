@@ -23,6 +23,5 @@ def jasmine_test(jasmine_repository = "jasmine", **kwargs):
             "@{}//:node_modules/jasmine".format(jasmine_repository),
             "@{}//:node_modules/jasmine-core".format(jasmine_repository),
         ],
-        chdir = kwargs.pop("chdir", native.package_name()),
         **kwargs
     )

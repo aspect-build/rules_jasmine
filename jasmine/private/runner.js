@@ -30,10 +30,10 @@ if (shardCount) {
 
     const Order = jasmine.Order;
     jasmine.Order = ($j) => {
-        const RandomOrder = Order($j);
+        const DefaultOrder = Order($j);
         return class ShardingOrder {
             constructor(options) {
-                this.random = new RandomOrder(options);
+                this.default = new DefaultOrder(options);
             }
             sort(items) {
                 const totalSpecsDefined = getTotalSpecsDefined();
@@ -54,7 +54,7 @@ if (shardCount) {
                     }
                 }
 
-                return this.random.sort(filtered);
+                return this.default.sort(filtered);
             }
         }
     }
