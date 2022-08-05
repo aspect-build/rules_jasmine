@@ -5,6 +5,19 @@ load("@aspect_rules_js//npm:npm_import.bzl", "npm_import")
 def npm_repositories():
     "Generated npm_import repository rules corresponding to npm packages in //:pnpm-lock.yaml"
     npm_import(
+        name = "npm_aspect_rules_jasmine__at_xmldom_xmldom__0.7.5",
+        root_package = "",
+        link_workspace = "",
+        link_packages = {},
+        package = "@xmldom/xmldom",
+        version = "0.7.5",
+        integrity = "sha512-V3BIhmY36fXZ1OtVcI9W+FxQqxVLsPKcNjWigIaa81dLC9IolJl5Mt4Cvhmr0flUnjSpTdrbMTSbXqYqV5dT6A==",
+        transitive_closure = {
+            "@xmldom/xmldom": ["0.7.5"],
+        },
+    )
+
+    npm_import(
         name = "npm_aspect_rules_jasmine__balanced-match__1.0.2",
         root_package = "",
         link_workspace = "",
@@ -141,6 +154,27 @@ def npm_repositories():
     )
 
     npm_import(
+        name = "npm_aspect_rules_jasmine__jasmine-reporters__2.5.0",
+        root_package = "",
+        link_workspace = "",
+        link_packages = {
+            "": ["jasmine-reporters"],
+        },
+        package = "jasmine-reporters",
+        version = "2.5.0",
+        integrity = "sha512-J69peyTR8j6SzvIPP6aO1Y00wwCqXuIvhwTYvE/di14roCf6X3wDZ4/cKGZ2fGgufjhP2FKjpgrUIKjwau4e/Q==",
+        deps = {
+            "@xmldom/xmldom": "0.7.5",
+            "mkdirp": "1.0.4",
+        },
+        transitive_closure = {
+            "jasmine-reporters": ["2.5.0"],
+            "@xmldom/xmldom": ["0.7.5"],
+            "mkdirp": ["1.0.4"],
+        },
+    )
+
+    npm_import(
         name = "npm_aspect_rules_jasmine__jasmine__4.3.0",
         root_package = "",
         link_workspace = "",
@@ -187,6 +221,19 @@ def npm_repositories():
             "brace-expansion": ["1.1.11"],
             "balanced-match": ["1.0.2"],
             "concat-map": ["0.0.1"],
+        },
+    )
+
+    npm_import(
+        name = "npm_aspect_rules_jasmine__mkdirp__1.0.4",
+        root_package = "",
+        link_workspace = "",
+        link_packages = {},
+        package = "mkdirp",
+        version = "1.0.4",
+        integrity = "sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==",
+        transitive_closure = {
+            "mkdirp": ["1.0.4"],
         },
     )
 

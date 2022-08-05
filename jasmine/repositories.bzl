@@ -28,6 +28,13 @@ copy_file(
     out = "runner.js",
     visibility = ["//visibility:public"],
 )
+
+copy_file(
+    name = "junit_reporter",
+    src = "@aspect_rules_jasmine//jasmine/private:junit_reporter.js",
+    out = "junit_reporter.js",
+    visibility = ["//visibility:public"],
+)
 """.format(version = repository_ctx.attr.jasmine_version))
 
     repository_ctx.file("jasmine/BUILD.bazel", "")

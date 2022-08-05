@@ -6,12 +6,15 @@ _attrs = dicts.add(js_binary_lib.attrs, {
     "entry_point": attr.label(
         mandatory = True,
     ),
+    "junit_reporter": attr.label(
+        mandatory = True,
+        allow_single_file = True,
+    ),
     "config": attr.label(
         doc = "jasmine config file. See: https://jasmine.github.io/setup/nodejs.html#configuration",
-        allow_single_file = [".json", ".js"]
-    )
+        allow_single_file = [".json", ".js"],
+    ),
 })
-
 
 def _impl(ctx):
     files = js_lib_helpers.gather_files_from_js_providers(
@@ -21,8 +24,18 @@ def _impl(ctx):
         include_npm_linked_packages = ctx.attr.include_npm_linked_packages,
     )
     files.extend(ctx.files.data)
+    files.append(ctx.file.junit_reporter)
 
-    fixed_args = []
+
+    junit_reporter = ctx.file.junit_reporter.short_path
+
+    if ctx.attr.chdir:
+        junit_reporter = "/".join([".." for _ in ctx.attr.chdir.split("/")] + [junit_reporter])
+
+    fixed_args = [
+        "--require=file://../%s" % junit_reporter,
+    ]
+
     if ctx.attr.config:
         config_file = ctx.file.config.short_path
         if ctx.attr.chdir:
@@ -50,7 +63,6 @@ def _impl(ctx):
             runfiles = runfiles,
         ),
     ]
-
 
 lib = struct(
     attrs = _attrs,
