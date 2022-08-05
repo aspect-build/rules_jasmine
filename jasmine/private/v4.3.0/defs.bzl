@@ -2,19 +2,22 @@
 
 # buildifier: disable=bzl-visibility
 load("@aspect_rules_js//js:defs.bzl", _js_library = "js_library")
-load("@npm_aspect_rules_jasmine__balanced-match__1.0.2__links//:defs.bzl", store_0 = "npm_imported_package_store")
-load("@npm_aspect_rules_jasmine__brace-expansion__1.1.11__links//:defs.bzl", store_1 = "npm_imported_package_store")
-load("@npm_aspect_rules_jasmine__concat-map__0.0.1__links//:defs.bzl", store_2 = "npm_imported_package_store")
-load("@npm_aspect_rules_jasmine__fs.realpath__1.0.0__links//:defs.bzl", store_3 = "npm_imported_package_store")
-load("@npm_aspect_rules_jasmine__glob__7.2.3__links//:defs.bzl", store_4 = "npm_imported_package_store")
-load("@npm_aspect_rules_jasmine__inflight__1.0.6__links//:defs.bzl", store_5 = "npm_imported_package_store")
-load("@npm_aspect_rules_jasmine__inherits__2.0.4__links//:defs.bzl", store_6 = "npm_imported_package_store")
-load("@npm_aspect_rules_jasmine__jasmine-core__4.3.0__links//:defs.bzl", link_7 = "npm_link_imported_package_store", store_7 = "npm_imported_package_store")
-load("@npm_aspect_rules_jasmine__jasmine__4.3.0__links//:defs.bzl", link_8 = "npm_link_imported_package_store", store_8 = "npm_imported_package_store")
-load("@npm_aspect_rules_jasmine__minimatch__3.1.2__links//:defs.bzl", store_9 = "npm_imported_package_store")
-load("@npm_aspect_rules_jasmine__once__1.4.0__links//:defs.bzl", store_10 = "npm_imported_package_store")
-load("@npm_aspect_rules_jasmine__path-is-absolute__1.0.1__links//:defs.bzl", store_11 = "npm_imported_package_store")
-load("@npm_aspect_rules_jasmine__wrappy__1.0.2__links//:defs.bzl", store_12 = "npm_imported_package_store")
+load("@npm_aspect_rules_jasmine__at_xmldom_xmldom__0.7.5__links//:defs.bzl", store_0 = "npm_imported_package_store")
+load("@npm_aspect_rules_jasmine__balanced-match__1.0.2__links//:defs.bzl", store_1 = "npm_imported_package_store")
+load("@npm_aspect_rules_jasmine__brace-expansion__1.1.11__links//:defs.bzl", store_2 = "npm_imported_package_store")
+load("@npm_aspect_rules_jasmine__concat-map__0.0.1__links//:defs.bzl", store_3 = "npm_imported_package_store")
+load("@npm_aspect_rules_jasmine__fs.realpath__1.0.0__links//:defs.bzl", store_4 = "npm_imported_package_store")
+load("@npm_aspect_rules_jasmine__glob__7.2.3__links//:defs.bzl", store_5 = "npm_imported_package_store")
+load("@npm_aspect_rules_jasmine__inflight__1.0.6__links//:defs.bzl", store_6 = "npm_imported_package_store")
+load("@npm_aspect_rules_jasmine__inherits__2.0.4__links//:defs.bzl", store_7 = "npm_imported_package_store")
+load("@npm_aspect_rules_jasmine__jasmine-core__4.3.0__links//:defs.bzl", link_8 = "npm_link_imported_package_store", store_8 = "npm_imported_package_store")
+load("@npm_aspect_rules_jasmine__jasmine-reporters__2.5.0__links//:defs.bzl", link_9 = "npm_link_imported_package_store", store_9 = "npm_imported_package_store")
+load("@npm_aspect_rules_jasmine__jasmine__4.3.0__links//:defs.bzl", link_10 = "npm_link_imported_package_store", store_10 = "npm_imported_package_store")
+load("@npm_aspect_rules_jasmine__minimatch__3.1.2__links//:defs.bzl", store_11 = "npm_imported_package_store")
+load("@npm_aspect_rules_jasmine__mkdirp__1.0.4__links//:defs.bzl", store_12 = "npm_imported_package_store")
+load("@npm_aspect_rules_jasmine__once__1.4.0__links//:defs.bzl", store_13 = "npm_imported_package_store")
+load("@npm_aspect_rules_jasmine__path-is-absolute__1.0.1__links//:defs.bzl", store_14 = "npm_imported_package_store")
+load("@npm_aspect_rules_jasmine__wrappy__1.0.2__links//:defs.bzl", store_15 = "npm_imported_package_store")
 
 def npm_link_all_packages(name = "node_modules", imported_links = []):
     """Generated list of npm_link_package() target generators and first-party linked packages corresponding to the packages in //:pnpm-lock.yaml
@@ -55,23 +58,27 @@ def npm_link_all_packages(name = "node_modules", imported_links = []):
             scope_targets[_scope] = scope_targets[_scope] + _targets if _scope in scope_targets else _targets
 
     if is_root:
-        store_0(name = "{}/balanced-match".format(name))
-        store_1(name = "{}/brace-expansion".format(name))
-        store_2(name = "{}/concat-map".format(name))
-        store_3(name = "{}/fs.realpath".format(name))
-        store_4(name = "{}/glob".format(name))
-        store_5(name = "{}/inflight".format(name))
-        store_6(name = "{}/inherits".format(name))
-        store_7(name = "{}/jasmine-core".format(name))
-        store_8(name = "{}/jasmine".format(name))
-        store_9(name = "{}/minimatch".format(name))
-        store_10(name = "{}/once".format(name))
-        store_11(name = "{}/path-is-absolute".format(name))
-        store_12(name = "{}/wrappy".format(name))
+        store_0(name = "{}/@xmldom/xmldom".format(name))
+        store_1(name = "{}/balanced-match".format(name))
+        store_2(name = "{}/brace-expansion".format(name))
+        store_3(name = "{}/concat-map".format(name))
+        store_4(name = "{}/fs.realpath".format(name))
+        store_5(name = "{}/glob".format(name))
+        store_6(name = "{}/inflight".format(name))
+        store_7(name = "{}/inherits".format(name))
+        store_8(name = "{}/jasmine-core".format(name))
+        store_9(name = "{}/jasmine-reporters".format(name))
+        store_10(name = "{}/jasmine".format(name))
+        store_11(name = "{}/minimatch".format(name))
+        store_12(name = "{}/mkdirp".format(name))
+        store_13(name = "{}/once".format(name))
+        store_14(name = "{}/path-is-absolute".format(name))
+        store_15(name = "{}/wrappy".format(name))
     if link:
         if native.package_name() == "":
-            link_targets.append(link_7(name = "{}/jasmine-core".format(name)))
-            link_targets.append(link_8(name = "{}/jasmine".format(name)))
+            link_targets.append(link_8(name = "{}/jasmine-core".format(name)))
+            link_targets.append(link_9(name = "{}/jasmine-reporters".format(name)))
+            link_targets.append(link_10(name = "{}/jasmine".format(name)))
 
     for scope, scoped_targets in scope_targets.items():
         _js_library(
