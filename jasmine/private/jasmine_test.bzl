@@ -17,15 +17,8 @@ _attrs = dicts.add(js_binary_lib.attrs, {
 })
 
 def _impl(ctx):
-    files = js_lib_helpers.gather_files_from_js_providers(
-        targets = ctx.attr.data,
-        include_transitive_sources = ctx.attr.include_transitive_sources,
-        include_declarations = ctx.attr.include_declarations,
-        include_npm_linked_packages = ctx.attr.include_npm_linked_packages,
-    )
-    files.extend(ctx.files.data)
+    files = ctx.files.data[:]
     files.append(ctx.file.junit_reporter)
-
 
     junit_reporter = ctx.file.junit_reporter.short_path
 
@@ -52,6 +45,12 @@ def _impl(ctx):
 
     runfiles = ctx.runfiles(
         files = files,
+        transitive_files = js_lib_helpers.gather_files_from_js_providers(
+            targets = ctx.attr.data,
+            include_transitive_sources = ctx.attr.include_transitive_sources,
+            include_declarations = ctx.attr.include_declarations,
+            include_npm_linked_packages = ctx.attr.include_npm_linked_packages,
+        ),
     ).merge(launcher.runfiles).merge_all([
         target[DefaultInfo].default_runfiles
         for target in ctx.attr.data
