@@ -3,9 +3,6 @@ load("@bazel_skylib//lib:dicts.bzl", "dicts")
 load("@bazel_skylib//lib:paths.bzl", "paths")
 
 _attrs = dicts.add(js_binary_lib.attrs, {
-    "entry_point": attr.label(
-        mandatory = True,
-    ),
     "junit_reporter": attr.label(
         mandatory = True,
         allow_single_file = True,
