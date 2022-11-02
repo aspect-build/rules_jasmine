@@ -2,7 +2,7 @@
 
 Public API re-exports
 
-<a id="#jasmine_test"></a>
+<a id="jasmine_test"></a>
 
 ## jasmine_test
 

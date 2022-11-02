@@ -27,9 +27,10 @@ nodejs_register_toolchains(
     node_version = DEFAULT_NODE_VERSION,
 )
 
-load("@aspect_rules_jasmine//jasmine:repositories.bzl", "rules_jasmine_repositories", "LATEST_VERSION")
+load("@aspect_rules_jasmine//jasmine:repositories.bzl", "jasmine_repositories")
 
-rules_jasmine_repositories(
-    name = "jasmine",
-    jasmine_version = LATEST_VERSION,
-)
+jasmine_repositories(name = "jasmine")
+
+load("@jasmine//:npm_repositories.bzl", jasmine_npm_repositories = "npm_repositories")
+
+jasmine_npm_repositories()

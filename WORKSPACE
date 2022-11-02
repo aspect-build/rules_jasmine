@@ -21,12 +21,13 @@ nodejs_register_toolchains(
     node_version = DEFAULT_NODE_VERSION,
 )
 
-load("//jasmine:repositories.bzl", "rules_jasmine_repositories", "LATEST_VERSION")
+load("//jasmine:repositories.bzl", "jasmine_repositories")
 
-rules_jasmine_repositories(
-    name = "jasmine",
-    jasmine_version = LATEST_VERSION
-)
+jasmine_repositories(name = "jasmine")
+
+load("@jasmine//:npm_repositories.bzl", jasmine_npm_repositories = "npm_repositories")
+
+jasmine_npm_repositories()
 
 # For running our own unit tests
 load("@bazel_skylib//:workspace.bzl", "bazel_skylib_workspace")
@@ -40,6 +41,6 @@ load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
 
 go_rules_dependencies()
 
-go_register_toolchains(version = "1.17.2")
+go_register_toolchains(version = "1.19.3")
 
 gazelle_dependencies()
