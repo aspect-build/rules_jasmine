@@ -1,8 +1,7 @@
-"""Mirror of release info"""
+"""List of mirrored versions"""
 
-# Run /scripts/mirror_release.sh to produce a new bzl file.
-load("v4.3.0/repositories.bzl", v4_3_0 = "npm_repositories")
-
-TOOL_VERSIONS = {
-    "v4.3.0": v4_3_0,
-}
+# Run /scripts/mirror_release.sh to add new versions.
+# Versions should be descending order so TOOL_VERSIONS[0] is the latest version.
+TOOL_VERSIONS = [
+    "v4.3.0",
+]

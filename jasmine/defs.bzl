@@ -1,6 +1,5 @@
 "Public API re-exports"
 
-
 load("@aspect_rules_jasmine//jasmine/private:jasmine_test.bzl", "lib")
 load("@aspect_rules_js//js:libs.bzl", "js_binary_lib")
 
