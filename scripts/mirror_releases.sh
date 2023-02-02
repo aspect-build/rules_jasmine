@@ -13,4 +13,5 @@ mkdir -p "$out"
 cd $(mktemp -d)
 npx pnpm install "jasmine@$version" "jasmine-reporters@$reporter_version"  --lockfile-only
 cp pnpm-lock.yaml "$out"
+cp package.json "$out"
 echo "Mirrored jasmine version $version to $out. Now add it to jasmine/private/versions.bzl"
