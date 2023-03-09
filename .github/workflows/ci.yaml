@@ -62,6 +62,7 @@ jobs:
         bazelversion: ${{ fromJSON(needs.matrix-prep-bazelversion.outputs.bazelversions) }}
         folder:
           - "."
+          - "e2e/jasmine_test"
           - "e2e/workspace"
         exclude:
           # Don't test macos with Bazel 5 to minimize macOS minutes (billed at 10X)
