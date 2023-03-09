@@ -55,6 +55,12 @@ If you need custom versions, please file an issue.""".format(jasmine_version, TO
     out = "junit_reporter.js",
     visibility = ["//visibility:public"],
 )""",
+                """copy_file(
+    name = "package_json",
+    src = "@aspect_rules_jasmine//jasmine/private:package.json",
+    out = "package.json",
+    visibility = ["//visibility:public"],
+)""",
             ],
             "defs.bzl": [
                 """load("@aspect_rules_jasmine//jasmine:defs.bzl", _jasmine_test = "jasmine_test")""",

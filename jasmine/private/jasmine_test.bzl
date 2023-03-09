@@ -7,6 +7,17 @@ _attrs = dicts.add(js_binary_lib.attrs, {
         mandatory = True,
         allow_single_file = True,
     ),
+    # We include a `package.json` not because it does anything particularly
+    # useful (it doesn't), but because without it, a `package.json` file in the
+    # root of the user's workspace (`//:package.json`) would be used for any
+    # JavaScript invoked in the `@jasmine` workspace. This could break things by
+    # changing the default type to `commonjs` or adding `imports` / `exports`.
+    # Including a `package.json` we own in the test execution, even if empty,
+    # prevents users from accidentally breaking the tests.
+    "package_json": attr.label(
+        mandatory = True,
+        allow_single_file = [".json"],
+    ),
     "config": attr.label(
         doc = "jasmine config file. See: https://jasmine.github.io/setup/nodejs.html#configuration",
         allow_single_file = [".json", ".js"],
@@ -16,6 +27,7 @@ _attrs = dicts.add(js_binary_lib.attrs, {
 def _impl(ctx):
     files = ctx.files.data[:]
     files.append(ctx.file.junit_reporter)
+    files.append(ctx.file.package_json)
 
     junit_reporter = ctx.file.junit_reporter.short_path
 
