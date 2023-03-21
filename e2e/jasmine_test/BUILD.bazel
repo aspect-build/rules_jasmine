@@ -1,12 +1,16 @@
 load("@aspect_rules_jasmine//jasmine:defs.bzl", "jasmine_test")
+load("@npm//:defs.bzl", "npm_link_all_packages")
+
+npm_link_all_packages(name = "node_modules")
 
 jasmine_test(
     name = "test",
+    args = ["*.spec.js"],
     data = [
         "lib.js",
         "lib.spec.js",
         "lib.test.js",
         "package.json",
     ],
-    args = ["*.spec.js"],
+    node_modules = "//:node_modules",
 )

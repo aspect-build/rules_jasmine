@@ -1,42 +1,30 @@
+"jasmine_test rule."
+
 load("@aspect_rules_js//js:libs.bzl", "js_binary_lib", "js_lib_helpers")
 load("@bazel_skylib//lib:dicts.bzl", "dicts")
 load("@bazel_skylib//lib:paths.bzl", "paths")
 
 _attrs = dicts.add(js_binary_lib.attrs, {
     "junit_reporter": attr.label(
-        mandatory = True,
         allow_single_file = True,
     ),
-    # We include a `package.json` not because it does anything particularly
-    # useful (it doesn't), but because without it, a `package.json` file in the
-    # root of the user's workspace (`//:package.json`) would be used for any
-    # JavaScript invoked in the `@jasmine` workspace. This could break things by
-    # changing the default type to `commonjs` or adding `imports` / `exports`.
-    # Including a `package.json` we own in the test execution, even if empty,
-    # prevents users from accidentally breaking the tests.
-    "package_json": attr.label(
-        mandatory = True,
-        allow_single_file = [".json"],
-    ),
     "config": attr.label(
-        doc = "jasmine config file. See: https://jasmine.github.io/setup/nodejs.html#configuration",
         allow_single_file = [".json", ".js"],
     ),
 })
 
 def _impl(ctx):
     files = ctx.files.data[:]
-    files.append(ctx.file.junit_reporter)
-    files.append(ctx.file.package_json)
+    fixed_args = []
 
-    junit_reporter = ctx.file.junit_reporter.short_path
+    if ctx.attr.junit_reporter:
+        files.append(ctx.file.junit_reporter)
 
-    if ctx.attr.chdir:
-        junit_reporter = "/".join([".." for _ in ctx.attr.chdir.split("/")] + [junit_reporter])
+        junit_reporter = ctx.file.junit_reporter.short_path
+        if ctx.attr.chdir:
+            junit_reporter = "/".join([".." for _ in ctx.attr.chdir.split("/")] + [junit_reporter])
 
-    fixed_args = [
-        "--require=file://../%s" % junit_reporter,
-    ]
+        fixed_args.append("--require=file://../%s" % junit_reporter)
 
     if ctx.attr.config:
         config_file = ctx.file.config.short_path

@@ -1,52 +1,55 @@
-load(":versions_test.bzl", "versions_test_suite")
 load("//jasmine:defs.bzl", "jasmine_test")
-
-versions_test_suite(name = "versions_test")
 
 jasmine_test(
     name = "junit_reporter",
-    data = ["junit_reporter.test.js"],
     args = [
-        "**/*.test.js"
-    ]
+        "**/*.test.js",
+    ],
+    data = ["junit_reporter.test.js"],
+    node_modules = "//:node_modules",
 )
 
 jasmine_test(
     name = "filtering",
     data = ["filtering.test.js"],
     expected_exit_code = 2,
+    node_modules = "//:node_modules",
 )
 
 jasmine_test(
     name = "config",
+    config = "config_file.js",
     data = ["config_file.test.js"],
-    config = "config_file.js"
+    node_modules = "//:node_modules",
 )
 
 jasmine_test(
     name = "config_chdir_package_name",
-    data = ["config_file.test.js"],
-    config = "config_file.js",
     chdir = package_name(),
+    config = "config_file.js",
+    data = ["config_file.test.js"],
+    node_modules = "//:node_modules",
 )
 
 jasmine_test(
     name = "shard",
-    data = ["shard.test.js"],
-    shard_count = 3,
     args = [
         "**/*.test.js",
-        "--random=false"
-    ]
+        "--random=false",
+    ],
+    data = ["shard.test.js"],
+    node_modules = "//:node_modules",
+    shard_count = 3,
 )
 
 jasmine_test(
     name = "failing_shard",
-    data = ["failing_shard.test.js"],
-    expected_exit_code = 3,
-    shard_count = 2,
     args = [
         "**/*.test.js",
-        "--random=false"
-    ]
+        "--random=false",
+    ],
+    data = ["failing_shard.test.js"],
+    expected_exit_code = 3,
+    node_modules = "//:node_modules",
+    shard_count = 2,
 )
