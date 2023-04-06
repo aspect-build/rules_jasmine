@@ -1,0 +1,6 @@
+#   rules_js needs to create symlinks to build the runfiles tree.
+#   Creating symlinks on Windows requires one of the following:
+#       1. Bazel is run with administrator privileges.
+#       2. The system version is Windows 10 Creators Update (1703) or later
+#          and developer mode is enabled.
+build --enable_runfiles
