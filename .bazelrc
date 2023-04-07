@@ -2,6 +2,12 @@
 # Take care to document any settings that you expect users to apply.
 # Settings that apply only to CI are in .github/workflows/ci.bazelrc
 
+#   rules_js needs to create symlinks to build the runfiles tree.
+#   Creating symlinks on Windows requires one of the following:
+#       1. Bazel is run with administrator privileges.
+#       2. The system version is Windows 10 Creators Update (1703) or later
+#          and developer mode is enabled.
+build --enable_runfiles
 
 # Load any settings specific to the current user.
 # .bazelrc.user should appear in .gitignore so that settings are not shared with team members
