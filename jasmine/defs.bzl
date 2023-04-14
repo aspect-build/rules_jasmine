@@ -1,16 +1,9 @@
 "Public API re-exports"
 
 load("@aspect_bazel_lib//lib:copy_file.bzl", "copy_file")
-load("@aspect_rules_jasmine//jasmine/private:jasmine_test.bzl", "lib")
-load("@aspect_rules_js//js:libs.bzl", "js_binary_lib")
+load("@aspect_rules_jasmine//jasmine/private:jasmine_test.bzl", _jasmine_test = "jasmine_test")
 
-_jasmine_test = rule(
-    doc = """Runs tests in NodeJS using the Jasmine test runner.""",
-    attrs = lib.attrs,
-    implementation = lib.implementation,
-    test = True,
-    toolchains = js_binary_lib.toolchains,
-)
+jasmine_test_rule = _jasmine_test
 
 def jasmine_test(
         name,
@@ -59,7 +52,7 @@ def jasmine_test(
     if kwargs.get("shard_count", None):
         data.append("{}/jasmine-core".format(node_modules))
 
-    _jasmine_test(
+    jasmine_test_rule(
         name = name,
         config = config,
         enable_runfiles = select({

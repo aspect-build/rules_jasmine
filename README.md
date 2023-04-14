@@ -1,5 +1,7 @@
 # Bazel rules for Jasmine
 
+Runs the [Jasmine](https://jasmine.github.io/) JS testing tool under Bazel.
+
 ## Installation
 
 From the release you wish to use:
@@ -7,5 +9,11 @@ From the release you wish to use:
 copy the WORKSPACE snippet into your `WORKSPACE` file.
 
 ## Usage
-See the [API documentation](./docs/rules), and the example usages in the [`examples/`](https://github.com/aspect-build/rules_jasmine/tree/main/examples/) directory.
-Note that the examples rely on code in the `/WORKSPACE` file in the root of this repo.
+
+API Docs
+
+- [jasmine_test](./docs/jasmine_test): runs Jasmine under `bazel test`
+
+See usage examples in the [`examples/`](https://github.com/aspect-build/rules_jasmine/tree/main/examples/) directory.
+
+> Note that the examples rely on code in the `/WORKSPACE` file in the root of this repo.
