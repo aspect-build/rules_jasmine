@@ -60,7 +60,16 @@ def _impl(ctx):
         ),
     ]
 
+# Expose a lib so others can build their own rule.
 lib = struct(
     attrs = _attrs,
     implementation = _impl,
+)
+
+jasmine_test = rule(
+    doc = """Runs tests in NodeJS using the Jasmine test runner.""",
+    attrs = lib.attrs,
+    implementation = lib.implementation,
+    test = True,
+    toolchains = js_binary_lib.toolchains,
 )
