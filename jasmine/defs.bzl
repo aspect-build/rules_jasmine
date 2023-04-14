@@ -1,4 +1,4 @@
-"Public API re-exports"
+"rules_jasmine public API"
 
 load("@aspect_bazel_lib//lib:copy_file.bzl", "copy_file")
 load("@aspect_bazel_lib//lib:utils.bzl", "default_timeout")
@@ -40,7 +40,8 @@ def jasmine_test(
 
             This should include all test files, configuration files & files under test.
 
-        **kwargs: All other args from `js_test`. See https://github.com/aspect-build/rules_js/blob/main/docs/js_binary.md#js_test
+        **kwargs: Additional named parameters from `js_test`.
+            See [js_test docs](https://github.com/aspect-build/rules_js/blob/main/docs/js_binary.md#js_test)
     """
     entry_point = "_{}_jasmine_runner.cjs".format(name)
     copy_file(

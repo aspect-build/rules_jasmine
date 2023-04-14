@@ -1,6 +1,6 @@
 <!-- Generated with Stardoc: http://skydoc.bazel.build -->
 
-Public API re-exports
+rules_jasmine public API
 
 <a id="jasmine_test"></a>
 
@@ -24,6 +24,6 @@ Runs jasmine under `bazel test`
 | <a id="jasmine_test-timeout"></a>timeout |  standard attribute for tests. Defaults to "short" if both timeout and size are unspecified.   |  <code>None</code> |
 | <a id="jasmine_test-size"></a>size |  standard attribute for tests   |  <code>None</code> |
 | <a id="jasmine_test-data"></a>data |  Runtime dependencies that Jasmine should be able to read.<br><br>This should include all test files, configuration files & files under test.   |  <code>[]</code> |
-| <a id="jasmine_test-kwargs"></a>kwargs |  All other args from <code>js_test</code>. See https://github.com/aspect-build/rules_js/blob/main/docs/js_binary.md#js_test   |  none |
+| <a id="jasmine_test-kwargs"></a>kwargs |  Additional named parameters from <code>js_test</code>. See [js_test docs](https://github.com/aspect-build/rules_js/blob/main/docs/js_binary.md#js_test)   |  none |
 
 

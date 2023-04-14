@@ -2,11 +2,16 @@
 
 Runs the [Jasmine](https://jasmine.github.io/) JS testing tool under Bazel.
 
+rules_jasmine is just a part of what Aspect provides:
+
+-   _Need help?_ This ruleset has support provided by https://aspect.dev.
+-   See our other Bazel rules, especially those built for rules_js, such as rules_ts for TypeScript: https://github.com/aspect-build
+
 ## Installation
 
-From the release you wish to use:
-<https://github.com/aspect-build/rules_jasmine/releases>
-copy the WORKSPACE snippet into your `WORKSPACE` file.
+- Under bzlmod in Bazel 6: start from <https://registry.bazel.build/modules/aspect_rules_jasmine>
+- Otherwise, from the [release you pick](https://github.com/aspect-build/rules_jasmine/releases),
+  copy the WORKSPACE snippet into your `WORKSPACE` file.
 
 ## Usage
 
