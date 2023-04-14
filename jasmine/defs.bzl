@@ -1,6 +1,7 @@
 "Public API re-exports"
 
 load("@aspect_bazel_lib//lib:copy_file.bzl", "copy_file")
+load("@aspect_bazel_lib//lib:utils.bzl", "default_timeout")
 load("@aspect_rules_jasmine//jasmine/private:jasmine_test.bzl", _jasmine_test = "jasmine_test")
 
 jasmine_test_rule = _jasmine_test
@@ -8,10 +9,13 @@ jasmine_test_rule = _jasmine_test
 def jasmine_test(
         name,
         node_modules,
-        generate_junit_xml = True,
+        jasmine_reporters = True,
         config = None,
+        timeout = None,
+        size = None,
+        data = [],
         **kwargs):
-    """jasmine_test rule
+    """Runs jasmine under `bazel test`
 
     Args:
         name: A unique name for this target.
@@ -19,14 +23,22 @@ def jasmine_test(
         node_modules: Label pointing to the linked node_modules target where jasmine is linked, e.g. `//:node_modules`.
 
             `jasmine` must be linked into the node_modules supplied.
-            `jasmine-reporters` is also required by default when generate_junit_xml is True
+            `jasmine-reporters` is also required by default when jasmine_reporters is True
             `jasmine-core` is required when using sharding.
 
-        generate_junit_xml: Add a custom reporter to output junit XML to `process.env.XML_OUTPUT_FILE` where Bazel expects to find it.
-
-            When enabled, `jasmine-reporters` must be linked to the supplied node_modules tree.
+        jasmine_reporters: Whether `jasmine-reporters` is present in the supplied node_modules tree.
+        
+            When enabled, adds a custom reporter to output junit XML to the path where Bazel expects to find it.
 
         config: jasmine config file. See: https://jasmine.github.io/setup/nodejs.html#configuration
+
+        timeout: standard attribute for tests. Defaults to "short" if both timeout and size are unspecified.
+
+        size: standard attribute for tests
+
+        data: Runtime dependencies that Jasmine should be able to read.
+
+            This should include all test files, configuration files & files under test.
 
         **kwargs: All other args from `js_test`. See https://github.com/aspect-build/rules_js/blob/main/docs/js_binary.md#js_test
     """
@@ -37,10 +49,10 @@ def jasmine_test(
         out = entry_point,
     )
 
-    data = kwargs.pop("data", []) + ["{}/jasmine".format(node_modules)]
+    data = data + ["{}/jasmine".format(node_modules)]
 
     junit_reporter = None
-    if generate_junit_xml:
+    if jasmine_reporters:
         junit_reporter = "_{}_jasmine_junit_reporter.cjs".format(name)
         copy_file(
             name = "_{}_copy_jasmine_junit_reporter".format(name),
@@ -66,5 +78,7 @@ def jasmine_test(
         entry_point = entry_point,
         junit_reporter = junit_reporter,
         data = data,
+        size = size,
+        timeout = default_timeout(size, timeout),
         **kwargs
     )

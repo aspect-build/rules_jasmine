@@ -10,6 +10,8 @@ copy the WORKSPACE snippet into your `WORKSPACE` file.
 
 ## Usage
 
+To run just the jasmine tests in a test pattern, you can use `bazel test --test_lang_filters=jasmine [target pattern...]`.
+
 API Docs
 
 - [jasmine_test](./docs/jasmine_test): runs Jasmine under `bazel test`
