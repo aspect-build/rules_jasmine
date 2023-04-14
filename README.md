@@ -19,7 +19,7 @@ To run just the jasmine tests in a test pattern, you can use `bazel test --test_
 
 API Docs
 
-- [jasmine_test](./docs/jasmine_test): runs Jasmine under `bazel test`
+- [jasmine_test](./docs/jasmine_test.md): runs Jasmine under `bazel test`
 
 See usage examples in the [`examples/`](https://github.com/aspect-build/rules_jasmine/tree/main/examples/) directory.
 
