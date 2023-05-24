@@ -15,7 +15,12 @@ _attrs = dicts.add(js_binary_lib.attrs, {
 
 def _impl(ctx):
     files = ctx.files.data[:]
+
     fixed_args = []
+
+    # TODO(2.0): we can assume fixed_args exists on attr for the 2.0 major release (it comes from rules_js 1.27.0)
+    if hasattr(ctx.attr, "fixed_args"):
+        fixed_args.extend(ctx.attr.fixed_args)
 
     if ctx.attr.junit_reporter:
         files.append(ctx.file.junit_reporter)
