@@ -1,0 +1,17 @@
+load("//jasmine:defs.bzl", "jasmine_test")
+load("@aspect_bazel_lib//lib:testing.bzl", "assert_contains")
+
+jasmine_test(
+    name = "test",
+    args = ["**/*.test.js"],
+    data = ["fixed_args.test.js"],
+    fixed_args = ["--random=true"],
+    node_modules = "//:node_modules",
+)
+
+# assert that the launcher script contains the fixed arg --random=true
+assert_contains(
+    name = "fixed_args_test",
+    actual = ":test",
+    expected = "--random=true",
+)

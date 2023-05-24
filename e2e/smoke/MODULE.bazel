@@ -1,6 +1,6 @@
 "Bazel dependencies"
 bazel_dep(name = "aspect_rules_jasmine", dev_dependency = True, version = "0.0.0")
-bazel_dep(name = "aspect_rules_js", version = "1.24.1")
+bazel_dep(name = "aspect_rules_js", version = "1.27.0")
 
 local_path_override(
     module_name = "aspect_rules_jasmine",
