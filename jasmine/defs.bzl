@@ -27,7 +27,7 @@ def jasmine_test(
             `jasmine-core` is required when using sharding.
 
         jasmine_reporters: Whether `jasmine-reporters` is present in the supplied node_modules tree.
-        
+
             When enabled, adds a custom reporter to output junit XML to the path where Bazel expects to find it.
 
         config: jasmine config file. See: https://jasmine.github.io/setup/nodejs.html#configuration
