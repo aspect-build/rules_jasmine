@@ -1,12 +1,13 @@
 "Bazel dependencies"
 
-bazel_dep(name = "aspect_rules_jasmine", version = "0.0.0", dev_dependency = True)
-bazel_dep(name = "aspect_rules_js", version = "1.29.2")
-
 local_path_override(
     module_name = "aspect_rules_jasmine",
     path = "../..",
 )
+
+bazel_dep(name = "aspect_rules_js", version = "1.29.2")
+
+bazel_dep(name = "aspect_rules_jasmine", version = "0.0.0", dev_dependency = True)
 
 npm = use_extension("@aspect_rules_js//npm:extensions.bzl", "npm")
 npm.npm_translate_lock(

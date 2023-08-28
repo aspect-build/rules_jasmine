@@ -1,4 +1,5 @@
 bazel-*
+**/.terraform/*
 .bazelrc.user
 .idea/
 .ijwb/

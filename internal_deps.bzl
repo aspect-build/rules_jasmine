@@ -6,6 +6,7 @@ statement from these, that's a bug in our distribution.
 
 # buildifier: disable=bzl-visibility
 load("//jasmine/private:maybe.bzl", http_archive = "maybe_http_archive")
+load("//.github/workflows:deps.bzl", "aspect_workflows_github_actions_deps")
 
 def rules_jasmine_internal_deps():
     "Fetch deps needed for local development"
@@ -41,3 +42,5 @@ def rules_jasmine_internal_deps():
             "https://github.com/keith/buildifier-prebuilt/archive/6.1.0.tar.gz",
         ],
     )
+
+    aspect_workflows_github_actions_deps()
