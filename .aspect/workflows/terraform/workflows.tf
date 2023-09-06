@@ -11,7 +11,7 @@ data "google_compute_image" "runner_image" {
 
 module "aspect_workflows" {
   # Aspect Workflows terraform module
-  source = "gcs::https://storage.googleapis.com/storage/v1/aspect-artifacts/5.8.0-rc1/workflows-gcp/terraform-gcp-aspect-workflows.zip"
+  source = "https://s3.us-east-2.amazonaws.com/static.aspect.build/aspect/5.8.0-rc3/workflows-gcp/terraform-gcp-aspect-workflows.zip"
 
   # Network properties
   network    = google_compute_network.workflows_network.id
@@ -63,7 +63,7 @@ module "aspect_workflows" {
       min_runners               = 0
       queue                     = "aspect-default"
       resource_type             = "default"
-      scaling_polling_frequency = 3  # check for queued jobs every 20s
+      scaling_polling_frequency = 1 # API limit is easy to exceed with both AWS & GCP set to scaling_polling_frequency > 1
       warming                   = true
     }
     # The warming runner group is used for the periodic warming job that creates
@@ -74,7 +74,7 @@ module "aspect_workflows" {
       # Determine the workflow ID with:
       # gh api -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /repos/aspect-build/rules_jasmine/actions/workflows
       # https://docs.github.com/en/rest/actions/workflows?apiVersion=2022-11-28#list-repository-workflows
-      gha_workflow_ids       = []  # Aspect Workflows Warming
+      gha_workflow_ids       = ["67748654"]  # Aspect Workflows Warming
       max_runners            = 1
       min_runners            = 0
       queue                  = "aspect-warming"
