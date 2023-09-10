@@ -63,7 +63,7 @@ module "aspect_workflows" {
       min_runners               = 0
       queue                     = "aspect-default"
       resource_type             = "default"
-      scaling_polling_frequency = 1 # API limit is easy to exceed with both AWS & GCP set to scaling_polling_frequency > 1
+      scaling_polling_frequency = 1 # check for queued jobs every 60s
       warming                   = true
     }
     # The warming runner group is used for the periodic warming job that creates
