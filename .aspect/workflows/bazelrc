@@ -1,0 +1,5 @@
+# Allows tests to run bazelisk-in-bazel, since this is the cache folder used
+test --test_env=XDG_CACHE_HOME
+
+# Workaround for Bazel requiring local JDK with coverage enabled: https://github.com/bazelbuild/bazel/issues/10825
+build --java_runtime_version=remotejdk_11

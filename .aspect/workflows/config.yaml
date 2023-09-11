@@ -1,14 +1,17 @@
 # See https://docs.aspect.build/v/workflows/config
 ---
 bazel:
+  rcfiles:
+    - .aspect/workflows/bazelrc
   flags:
     - --remote_download_minimal
     - --nobuild_runfile_links
-    # Allows tests to run bazelisk-in-bazel, since this is the cache folder used
-    - --test_env=XDG_CACHE_HOME
 tasks:
   buildifier:
+  build:
   test:
+    coverage: true
+    upload_test_logs: executed
     bazel:
       # Generate and save the execution log to artifacts
       bazel_debug_assistance: true

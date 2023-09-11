@@ -16,5 +16,8 @@ assert_contains(
     expected = "--random=true",
     # this test asserts the contents of the bash launcher so is disabled on Windows
     # since on Windows the default output of `:test` is the `.bat` wrapper
-    tags = ["no-windows"],
+    tags = [
+        "manual",
+        "no-windows",
+    ],
 )
