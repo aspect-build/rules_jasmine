@@ -3,8 +3,13 @@
 tasks:
   buildifier:
   test:
+    targets:
+      - //...
+      - -//docs/...
     bazel:
       bazel_debug_assistance: true
       flags:
         # Allows tests to run bazelisk-in-bazel, since this is the cache folder used
         - --test_env=XDG_CACHE_HOME
+        - --bes_backend=grpcs://remote.buildbuddy.io
+        - --remote_header=x-buildbuddy-api-key=lsAijCKQsb4TCP8D1UvK
