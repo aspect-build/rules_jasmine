@@ -6,6 +6,9 @@ bazel:
     - --nobuild_runfile_links
     # Allows tests to run bazelisk-in-bazel, since this is the cache folder used
     - --test_env=XDG_CACHE_HOME
+    - --bes_results_url=https://app.buildbuddy.io/invocation/
+    - --bes_backend=grpcs://remote.buildbuddy.io
+    - --remote_header=x-buildbuddy-api-key=lsAijCKQsb4TCP8D1UvK
 tasks:
   buildifier:
   test:
