@@ -2,9 +2,14 @@
   "homepage": "https://docs.aspect.build/rules/aspect_rules_jasmine",
   "maintainers": [
     {
-      "email": "hello@aspect.dev",
-      "github": "aspect-build",
-      "name": "Aspect team"
+      "email": "greg@aspect.dev",
+      "github": "gregmagolan",
+      "name": "Greg Magolan"
+    },
+    {
+      "email": "jason@aspect.dev",
+      "github": "jbedard",
+      "name": "Jason Bedard"
     }
   ],
   "repository": ["github:aspect-build/rules_jasmine"],
