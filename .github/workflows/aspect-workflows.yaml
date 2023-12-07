@@ -10,6 +10,10 @@ on:
   # Allow this to be triggered manually via the GitHub UI Actions tab
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   aspect-workflows:
     name: Aspect Workflows
