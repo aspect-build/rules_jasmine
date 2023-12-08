@@ -4,9 +4,10 @@ Users should *not* need to install these. If users see a load()
 statement from these, that's a bug in our distribution.
 """
 
+load("//.github/workflows:deps.bzl", "aspect_workflows_github_actions_deps")
+
 # buildifier: disable=bzl-visibility
 load("//jasmine/private:maybe.bzl", http_archive = "maybe_http_archive")
-load("//.github/workflows:deps.bzl", "aspect_workflows_github_actions_deps")
 
 def rules_jasmine_internal_deps():
     "Fetch deps needed for local development"
@@ -36,9 +37,9 @@ def rules_jasmine_internal_deps():
 
     http_archive(
         name = "buildifier_prebuilt",
-        sha256 = "e46c16180bc49487bfd0f1ffa7345364718c57334fa0b5b67cb5f27eba10f309",
-        strip_prefix = "buildifier-prebuilt-6.1.0",
-        urls = ["https://github.com/keith/buildifier-prebuilt/archive/6.1.0.tar.gz"],
+        sha256 = "72b5bb0853aac597cce6482ee6c62513318e7f2c0050bc7c319d75d03d8a3875",
+        strip_prefix = "buildifier-prebuilt-6.3.3",
+        urls = ["https://github.com/keith/buildifier-prebuilt/archive/6.3.3.tar.gz"],
     )
 
     http_archive(
