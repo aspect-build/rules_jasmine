@@ -1,5 +1,5 @@
-load("//jasmine:defs.bzl", "jasmine_test")
 load("@aspect_bazel_lib//lib:testing.bzl", "assert_contains")
+load("//jasmine:defs.bzl", "jasmine_test")
 
 jasmine_test(
     name = "test",
