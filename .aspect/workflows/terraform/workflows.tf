@@ -42,7 +42,7 @@ module "aspect_workflows" {
 
   # Warming set definitions
   warming_sets = {
-    default  = {}
+    default = {}
   }
 
   # Resource types for use by runner groups
@@ -61,12 +61,12 @@ module "aspect_workflows" {
   gha_runner_groups = {
     # The default runner group is use for the main build & test workflows.
     default = {
-      agent_idle_timeout_min    = 1
-      gh_repo                   = "aspect-build/rules_jasmine"
+      agent_idle_timeout_min = 1
+      gh_repo                = "aspect-build/rules_jasmine"
       # Determine the workflow ID with:
       # gh api -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /repos/aspect-build/rules_jasmine/actions/workflows
       # https://docs.github.com/en/rest/actions/workflows?apiVersion=2022-11-28#list-repository-workflows
-      gha_workflow_ids          = ["67579950"]  # Aspect Workflows
+      gha_workflow_ids          = ["67579950"] # Aspect Workflows
       max_runners               = 5
       min_runners               = 0
       queue                     = "aspect-default"
@@ -83,11 +83,11 @@ module "aspect_workflows" {
       # Determine the workflow ID with:
       # gh api -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /repos/aspect-build/rules_jasmine/actions/workflows
       # https://docs.github.com/en/rest/actions/workflows?apiVersion=2022-11-28#list-repository-workflows
-      gha_workflow_ids       = ["67748654"]  # Aspect Workflows Warming
-      max_runners            = 1
-      min_runners            = 0
-      queue                  = "aspect-warming"
-      resource_type          = "default"
+      gha_workflow_ids = ["67748654"] # Aspect Workflows Warming
+      max_runners      = 1
+      min_runners      = 0
+      queue            = "aspect-warming"
+      resource_type    = "default"
     }
   }
 
