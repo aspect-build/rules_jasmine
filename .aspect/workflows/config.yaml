@@ -2,8 +2,10 @@
 ---
 tasks:
   format:
+    queue: aspect-small
     soft_fail: false
   buildifier:
+    queue: aspect-small
   test:
     bazel:
       # Generate and save the execution log to artifacts
