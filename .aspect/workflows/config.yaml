@@ -1,12 +1,8 @@
 # See https://docs.aspect.build/v/workflows/config
 ---
 tasks:
-  format:
-    queue: aspect-small
-    soft_fail: false
-  buildifier:
-    queue: aspect-small
-  test:
-    bazel:
-      # Generate and save the execution log to artifacts
-      bazel_debug_assistance: true
+  - format:
+      queue: aspect-small
+  - buildifier:
+      queue: aspect-small
+  - test:
