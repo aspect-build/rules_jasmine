@@ -48,22 +48,38 @@ module "aspect_workflows" {
     default = {}
   }
 
-  # Resource types for use by runner groups
+  # Resource types for use by runner groups. Aspect recommends machines types that have SSD drives
+  # for large Bazel workflows. See
+  # https://cloud.google.com/compute/docs/machine-resource#machine_type_comparison for list of
+  # machine types availble on GCP.
   resource_types = {
     default = {
-      # Aspect Workflows requires machine types that have local SSD drives. See
-      # https://cloud.google.com/compute/docs/machine-resource#machine_type_comparison for full list
-      # of machine types availble on GCP.
-      machine_type    = "n1-standard-4"
-      image_id        = data.google_compute_image.runner_image.id
+      machine_type = "n1-standard-4"
+      image_id     = data.google_compute_image.runner_image.id
+      # While preemtible instances are possible to provision and we use them here on this open source
+      # repository as a demonstration of how to reduce compute costs, they are not recommended for
+      # repositories where the occasional CI failures due to a machine being preemted mid-job are not
+      # acceptable.
       use_preemptible = true
     }
     small = {
-      # Aspect Workflows requires machine types that have local SSD drives. See
-      # https://cloud.google.com/compute/docs/machine-resource#machine_type_comparison for full list
-      # of machine types availble on GCP.
-      machine_type    = "n1-standard-1"
-      image_id        = data.google_compute_image.runner_image.id
+      machine_type = "e2-small"
+      num_ssds     = 0
+      image_id     = data.google_compute_image.runner_image.id
+      # While preemtible instances are possible to provision and we use them here on this open source
+      # repository as a demonstration of how to reduce compute costs, they are not recommended for
+      # repositories where the occasional CI failures due to a machine being preemted mid-job are not
+      # acceptable.
+      use_preemptible = true
+    }
+    micro = {
+      machine_type = "e2-micro"
+      num_ssds     = 0
+      image_id     = data.google_compute_image.runner_image.id
+      # While preemtible instances are possible to provision and we use them here on this open source
+      # repository as a demonstration of how to reduce compute costs, they are not recommended for
+      # repositories where the occasional CI failures due to a machine being preemted mid-job are not
+      # acceptable.
       use_preemptible = true
     }
   }
@@ -86,7 +102,7 @@ module "aspect_workflows" {
       warming                   = true
     }
     small = {
-      agent_idle_timeout_min = 1
+      agent_idle_timeout_min = 10
       gh_repo                = "aspect-build/rules_jasmine"
       # Determine the workflow ID with:
       # gh api -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /repos/aspect-build/rules_jasmine/actions/workflows
@@ -96,6 +112,20 @@ module "aspect_workflows" {
       min_runners               = 0
       queue                     = "aspect-small"
       resource_type             = "small"
+      scaling_polling_frequency = 1     # check for queued jobs every 60s
+      warming                   = false # don't warm for faster bootstrap; these runners won't be running large builds
+    }
+    micro = {
+      agent_idle_timeout_min = 60 * 12
+      gh_repo                = "aspect-build/rules_jasmine"
+      # Determine the workflow ID with:
+      # gh api -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /repos/aspect-build/rules_jasmine/actions/workflows
+      # https://docs.github.com/en/rest/actions/workflows?apiVersion=2022-11-28#list-repository-workflows
+      gha_workflow_ids          = ["67579950"] # Aspect Workflows
+      max_runners               = 5
+      min_runners               = 0
+      queue                     = "aspect-micro"
+      resource_type             = "micro"
       scaling_polling_frequency = 1     # check for queued jobs every 60s
       warming                   = false # don't warm for faster bootstrap; these runners won't be running large builds
     }
