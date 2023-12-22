@@ -5,6 +5,8 @@ tasks:
       queue: aspect-small
   - buildifier:
       queue: aspect-small
+  - configure:
+      queue: aspect-small
   - test:
   - delivery:
       always_deliver: true
