@@ -14,7 +14,10 @@ assert_contains(
     name = "fixed_args_bash_launcher_test",
     actual = ":test",
     expected = "--random=true",
-    # this test asserts the contents of the bash launcher so is disabled on Windows
-    # since on Windows the default output of `:test` is the `.bat` wrapper
-    tags = ["no-windows"],
+    target_compatible_with = select({
+        # this test asserts the contents of the bash launcher so is disabled on Windows
+        # since on Windows the default output of `:test` is the `.bat` wrapper
+        "@platforms//os:windows": ["@platforms//:incompatible"],
+        "//conditions:default": [],
+    }),
 )
