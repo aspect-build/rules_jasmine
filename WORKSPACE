@@ -39,10 +39,31 @@ load("@bazel_skylib//:workspace.bzl", "bazel_skylib_workspace")
 
 bazel_skylib_workspace()
 
-load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
+############################################
+# Stardoc
+load("@io_bazel_stardoc//:setup.bzl", "stardoc_repositories")
+
+stardoc_repositories()
+
+load("@rules_jvm_external//:repositories.bzl", "rules_jvm_external_deps")
+
+rules_jvm_external_deps()
+
+load("@rules_jvm_external//:setup.bzl", "rules_jvm_external_setup")
+
+rules_jvm_external_setup()
+
+load("@io_bazel_stardoc//:deps.bzl", "stardoc_external_deps")
+
+stardoc_external_deps()
+
+load("@stardoc_maven//:defs.bzl", stardoc_pinned_maven_install = "pinned_maven_install")
+
+stardoc_pinned_maven_install()
 
 ############################################
 # Gazelle, for generating bzl_library targets
+load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 
 go_rules_dependencies()

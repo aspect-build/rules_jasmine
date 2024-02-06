@@ -5,7 +5,7 @@ local_path_override(
     path = "../..",
 )
 
-bazel_dep(name = "aspect_rules_js", version = "1.29.2")
+bazel_dep(name = "aspect_rules_js", version = "1.37.1")
 
 bazel_dep(name = "aspect_rules_jasmine", version = "0.0.0", dev_dependency = True)
 
