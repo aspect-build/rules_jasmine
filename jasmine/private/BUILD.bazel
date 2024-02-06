@@ -19,3 +19,13 @@ bzl_library(
         "@aspect_rules_js//js:libs",
     ],
 )
+
+bzl_library(
+    name = "maybe",
+    srcs = ["maybe.bzl"],
+    visibility = ["//jasmine:__subpackages__"],
+    deps = [
+        "@bazel_tools//tools/build_defs/repo:http.bzl",
+        "@bazel_tools//tools/build_defs/repo:utils.bzl",
+    ],
+)
