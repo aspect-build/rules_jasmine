@@ -1,12 +1,23 @@
-# Bazel settings that apply to this repository.
-# Take care to document any settings that you expect users to apply.
-# Settings that apply only to CI are in .github/workflows/ci.bazelrc
+# Import Aspect bazelrc presets
+try-import %workspace%/.aspect/bazelrc/bazel7.bazelrc
+import %workspace%/.aspect/bazelrc/convenience.bazelrc
+import %workspace%/.aspect/bazelrc/correctness.bazelrc
+import %workspace%/.aspect/bazelrc/debug.bazelrc
+import %workspace%/.aspect/bazelrc/javascript.bazelrc
+import %workspace%/.aspect/bazelrc/performance.bazelrc
+
+### YOUR PROJECT SPECIFIC SETTINGS GO HERE ###
 
 # Runfiles still required for Windows in this repository despite not
 # being strictly necessary for rules_js support with
 # https://github.com/aspect-build/rules_js/pull/1428 landed.
 # TODO: fix broken targets on Windows and remove this flag
 build --enable_runfiles
+
+# Don’t want to push a rules author to update their deps if not needed.
+# https://bazel.build/reference/command-line-reference#flag--check_direct_dependencies
+# https://bazelbuild.slack.com/archives/C014RARENH0/p1691158021917459?thread_ts=1691156601.420349&cid=C014RARENH0
+common --check_direct_dependencies=off
 
 # Load any settings specific to the current user.
 # .bazelrc.user should appear in .gitignore so that settings are not shared with team members

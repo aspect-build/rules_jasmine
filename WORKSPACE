@@ -12,7 +12,7 @@ rules_jasmine_dependencies()
 
 load("@aspect_bazel_lib//lib:repositories.bzl", "aspect_bazel_lib_dependencies")
 
-aspect_bazel_lib_dependencies(override_local_config_platform = True)
+aspect_bazel_lib_dependencies()
 
 load("@rules_nodejs//nodejs:repositories.bzl", "DEFAULT_NODE_VERSION", "nodejs_register_toolchains")
 
@@ -68,7 +68,7 @@ load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_depe
 
 go_rules_dependencies()
 
-go_register_toolchains(version = "1.19.3")
+go_register_toolchains(version = "1.21.6")
 
 gazelle_dependencies()
 

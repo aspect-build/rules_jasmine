@@ -8,11 +8,26 @@ TAG=${GITHUB_REF_NAME}
 # The prefix is chosen to match what GitHub generates for source archives
 PREFIX="rules_jasmine-${TAG:1}"
 ARCHIVE="rules_jasmine-$TAG.tar.gz"
+
+# NB: configuration for 'git archive' is in /.gitattributes
 git archive --format=tar --prefix=${PREFIX}/ ${TAG} | gzip >$ARCHIVE
 SHA=$(shasum -a 256 $ARCHIVE | awk '{print $1}')
 
 cat <<EOF
-WORKSPACE snippet:
+## Using [Bzlmod] with Bazel 6 or later:
+
+Add to your \`MODULE.bazel\` file:
+
+\`\`\`starlark
+bazel_dep(name = "aspect_rules_jasmine", version = "${TAG:1}")
+\`\`\`
+
+[Bzlmod]: https://bazel.build/build/bzlmod
+
+## Using WORKSPACE
+
+Paste this snippet into your \`WORKSPACE.bazel\` file:
+
 \`\`\`starlark
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 http_archive(

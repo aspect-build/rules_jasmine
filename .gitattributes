@@ -1,2 +1,11 @@
 docs/*.md linguist-generated=true
 pnpm-lock.yaml linguist-generated=true
+
+#################################
+# Configuration for 'git archive'
+# See https://git-scm.com/docs/git-archive#ATTRIBUTES
+
+# Don't include e2e & examples in the distribution artifact, to reduce size.
+# You may want to add additional exclusions for folders or files that users don't need.
+e2e export-ignore
+examples export-ignore
