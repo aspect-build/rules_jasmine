@@ -9,4 +9,4 @@ tasks:
       queue: aspect-small
   - test:
   - delivery:
-      always_deliver: true
+      auto_deliver: true
