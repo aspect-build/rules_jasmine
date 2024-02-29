@@ -12,9 +12,9 @@ on:
   workflow_dispatch:
 
 concurrency:
-  # Cancel previous actions from the same PR: https://stackoverflow.com/a/72408109
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
+  # Cancel previous actions from same PR or branch except 'main' branch (https://stackoverflow.com/a/72408109)
+  group: concurrency-group::${{ github.workflow }}::${{ github.event.pull_request.number > 0 && format('pr-{0}', github.event.pull_request.number) || github.ref_name }}
+  cancel-in-progress: ${{ github.ref_name != 'main' }}
 
 jobs:
   # Prepares dynamic test matrix values
@@ -62,9 +62,9 @@ jobs:
         bzlmod: [1, 0]
         os: ${{ fromJSON(needs.matrix-prep.outputs.os) }}
         folder:
-          - '.'
-          - 'e2e/jasmine_test'
-          - 'e2e/smoke'
+          - "."
+          - "e2e/jasmine_test"
+          - "e2e/smoke"
         exclude:
           # Don't test MacOS and Windows against secondary bazel version to minimize minutes (billed at 10X and 2X respectively)
           # https://docs.github.com/en/billing/managing-billing-for-github-actions/about-billing-for-github-actions#included-storage-and-minutes
