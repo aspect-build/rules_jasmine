@@ -10,3 +10,14 @@ tasks:
   - test:
   - delivery:
       auto_deliver: true
+      rules:
+        - deliverable: 'attr("tags", "\bdeliverable\b", //...)'
+          condition:
+            branches:
+              - main
+        - deliverable:
+            - //docs:docs_delivery
+          condition:
+            only_on_change: false
+            branches:
+              - main
