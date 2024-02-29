@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  # Cancel previous actions from the same PR: https://stackoverflow.com/a/72408109
+  # Cancel previous actions from same PR or branch except 'main' branch (https://stackoverflow.com/a/72408109)
   group: concurrency-group::${{ github.workflow }}::${{ github.event.pull_request.number > 0 && format('pr-{0}', github.event.pull_request.number) || github.ref_name }}
   cancel-in-progress: ${{ github.ref_name != 'main' }}
 
