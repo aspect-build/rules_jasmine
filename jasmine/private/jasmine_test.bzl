@@ -17,10 +17,7 @@ def _impl(ctx):
     files = ctx.files.data[:]
 
     fixed_args = []
-
-    # TODO(2.0): we can assume fixed_args exists on attr for the 2.0 major release (it comes from rules_js 1.27.0)
-    if hasattr(ctx.attr, "fixed_args"):
-        fixed_args.extend(ctx.attr.fixed_args)
+    fixed_args.extend(ctx.attr.fixed_args)
 
     if ctx.attr.junit_reporter:
         files.append(ctx.file.junit_reporter)
@@ -47,11 +44,13 @@ def _impl(ctx):
 
     runfiles = ctx.runfiles(
         files = files,
-        transitive_files = js_lib_helpers.gather_files_from_js_providers(
+        transitive_files = js_lib_helpers.gather_files_from_js_infos(
             targets = ctx.attr.data,
+            include_sources = ctx.attr.include_sources,
+            include_types = ctx.attr.include_types,
             include_transitive_sources = ctx.attr.include_transitive_sources,
-            include_declarations = ctx.attr.include_declarations,
-            include_npm_linked_packages = ctx.attr.include_npm_linked_packages,
+            include_transitive_types = ctx.attr.include_transitive_types,
+            include_npm_sources = ctx.attr.include_npm_sources,
         ),
     ).merge(launcher.runfiles).merge_all([
         target[DefaultInfo].default_runfiles

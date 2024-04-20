@@ -16,27 +16,21 @@ def rules_jasmine_dependencies():
 
     http_archive(
         name = "aspect_bazel_lib",
-        sha256 = "04feedcd06f71d0497a81fdd3220140a373ff9d2bff94620fbd50b774f96d8e0",
-        strip_prefix = "bazel-lib-1.40.2",
-        url = "https://github.com/aspect-build/bazel-lib/releases/download/v1.40.2/bazel-lib-v1.40.2.tar.gz",
+        sha256 = "87ab4ec479ebeb00d286266aca2068caeef1bb0b1765e8f71c7b6cfee6af4226",
+        strip_prefix = "bazel-lib-2.7.3",
+        url = "https://github.com/aspect-build/bazel-lib/releases/download/v2.7.3/bazel-lib-v2.7.3.tar.gz",
     )
 
     http_archive(
         name = "aspect_rules_js",
-        sha256 = "630a71aba66c4023a5b16ab3efafaeed8b1a2865ccd168a34611eb73876b3fc4",
-        strip_prefix = "rules_js-1.37.1",
-        url = "https://github.com/aspect-build/rules_js/releases/download/v1.37.1/rules_js-v1.37.1.tar.gz",
+        sha256 = "b2669ce908107570e5f552dbf9f133fd6c81e7a90c6083d8a1e03620657980d1",
+        strip_prefix = "rules_js-2.0.0-alpha.4",
+        url = "https://github.com/aspect-build/rules_js/releases/download/v2.0.0-alpha.4/rules_js-v2.0.0-alpha.4.tar.gz",
     )
 
     http_archive(
         name = "rules_nodejs",
-        sha256 = "8fc8e300cb67b89ceebd5b8ba6896ff273c84f6099fc88d23f24e7102319d8fd",
-        urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/5.8.4/rules_nodejs-core-5.8.4.tar.gz"],
-    )
-
-    http_archive(
-        name = "bazel_features",
-        sha256 = "0f23d75c7623d6dba1fd30513a94860447de87c8824570521fcc966eda3151c2",
-        strip_prefix = "bazel_features-1.4.1",
-        url = "https://github.com/bazel-contrib/bazel_features/releases/download/v1.4.1/bazel_features-v1.4.1.tar.gz",
+        sha256 = "dddd60acc3f2f30359bef502c9d788f67e33814b0ddd99aa27c5a15eb7a41b8c",
+        strip_prefix = "rules_nodejs-6.1.0",
+        url = "https://github.com/bazelbuild/rules_nodejs/releases/download/v6.1.0/rules_nodejs-v6.1.0.tar.gz",
     )
