@@ -2,14 +2,14 @@
 common --disk_cache=~/.cache/bazel-disk-cache
 common --repository_cache=~/.cache/bazel-repository-cache
 
-# Bazel version specific settings
-common:bazel6 --build_tag_filters=-skip-on-bazel6
-common:bazel6 --test_tag_filters=-skip-on-bazel6
-common:bazel7 --build_tag_filters=-skip-on-bazel7
-common:bazel7 --test_tag_filters=-skip-on-bazel7
+# Debug where options came from
+common --announce_rc
+
+# Allows tests to run bazelisk-in-bazel, since this is the cache folder used
+common --test_env=XDG_CACHE_HOME
 
 # Runfiles still required for Windows in this repository despite not
 # being strictly necessary for rules_js support with
 # https://github.com/aspect-build/rules_js/pull/1428 landed.
 # TODO: fix broken targets on Windows and remove this flag
-build --enable_runfiles
+common --enable_runfiles

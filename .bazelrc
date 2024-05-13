@@ -6,13 +6,7 @@ import %workspace%/.aspect/bazelrc/debug.bazelrc
 import %workspace%/.aspect/bazelrc/javascript.bazelrc
 import %workspace%/.aspect/bazelrc/performance.bazelrc
 
-### YOUR PROJECT SPECIFIC SETTINGS GO HERE ###
-
-# Runfiles still required for Windows in this repository despite not
-# being strictly necessary for rules_js support with
-# https://github.com/aspect-build/rules_js/pull/1428 landed.
-# TODO: fix broken targets on Windows and remove this flag
-build --enable_runfiles
+### YOUR PROJECT SPECIFIC OPTIONS GO HERE ###
 
 # Don’t want to push a rules author to update their deps if not needed.
 # https://bazel.build/reference/command-line-reference#flag--check_direct_dependencies

@@ -86,7 +86,7 @@ jobs:
             ~/.cache/bazel-disk-cache
             ~/.cache/bazel-repository-cache
             ~/.cache/xdg-cache
-          key: bazel-cache-${{ matrix.bazel-version.version }}-${{ matrix.bzlmod }}-${{ matrix.os }}-${{ matrix.folder }}-${{ hashFiles('.bazelrc', '.bazelversion', '.bazeliskrc', '**/BUILD', '**/BUILD.bazel', '**/*.bzl', 'WORKSPACE', 'WORKSPACE.bazel', 'WORKSPACE.bzlmod', 'MODULE.bazel', 'MODULE.bazel.lock') }}
+          key: bazel-cache-${{ matrix.bazel-version.version }}-${{ matrix.bzlmod }}-${{ matrix.os }}-${{ matrix.folder }}-${{ hashFiles('.bazelrc', '.bazelversion', '.bazeliskrc', '**/BUILD', '**/BUILD.bazel', '**/*.bzl', 'WORKSPACE', 'WORKSPACE.bazel', 'WORKSPACE.bzlmod', 'MODULE.bazel') }}
           restore-keys: bazel-cache-${{ matrix.bazel-version.version }}-${{ matrix.bzlmod }}-${{ matrix.os }}-${{ matrix.folder }}-
 
       - name: Configure Bazel version
@@ -119,7 +119,8 @@ jobs:
             --bazelrc=${GITHUB_WORKSPACE//\\/\/}/.aspect/bazelrc/ci.bazelrc \
             --bazelrc=${GITHUB_WORKSPACE//\\/\/}/.github/workflows/ci.bazelrc \
             test \
-            --config=bazel${{ matrix.bazel-version.major }} \
+            --test_tag_filters=-skip-on-bazel${{ matrix.bazel-version.major }} \
+            --build_tag_filters=-skip-on-bazel${{ matrix.bazel-version.major }} \
             --enable_bzlmod=${{ matrix.bzlmod }} \
             //...
         env:
