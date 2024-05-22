@@ -69,11 +69,7 @@ def jasmine_test(
         name = name,
         config = config,
         enable_runfiles = select({
-            "@aspect_rules_js//js:enable_runfiles": True,
-            "//conditions:default": False,
-        }),
-        unresolved_symlinks_enabled = select({
-            "@aspect_rules_js//js:allow_unresolved_symlinks": True,
+            "@aspect_bazel_lib//lib:enable_runfiles": True,
             "//conditions:default": False,
         }),
         entry_point = entry_point,
