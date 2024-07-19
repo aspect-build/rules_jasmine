@@ -24,3 +24,5 @@ API Docs
 See usage examples in the [`examples/`](https://github.com/aspect-build/rules_jasmine/tree/main/examples/) directory.
 
 > Note that the examples rely on code in the `/WORKSPACE` file in the root of this repo.
+
+FOOBAR
