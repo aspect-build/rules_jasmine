@@ -1,5 +1,4 @@
 load("@aspect_bazel_lib//lib:bazelrc_presets.bzl", "write_aspect_bazelrc_presets")
-load("@aspect_bazel_lib//lib:write_source_files.bzl", "write_source_file")
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 
 write_aspect_bazelrc_presets(
@@ -10,11 +9,11 @@ write_aspect_bazelrc_presets(
     ],
 )
 
-write_source_file(
-    name = "aspect_workflows_reusable",
-    in_file = "@aspect_workflows_action//:.github/workflows/.aspect-workflows-reusable.yaml",
-    out_file = ".aspect-workflows-reusable.yaml",
-)
+# write_source_file(
+#     name = "aspect_workflows_reusable",
+#     in_file = "@aspect_workflows_action//:.github/workflows/.aspect-workflows-reusable.yaml",
+#     out_file = ".aspect-workflows-reusable.yaml",
+# )
 
 bzl_library(
     name = "deps",
