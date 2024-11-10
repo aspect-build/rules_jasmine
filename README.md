@@ -1,11 +1,11 @@
-# Bazel rules for Jasmine
+# Bazel rules for Jasmine!
 
 Runs the [Jasmine](https://jasmine.github.io/) JS testing tool under Bazel.
 
 rules_jasmine is just a part of what Aspect provides:
 
--   _Need help?_ This ruleset has support provided by https://aspect.dev.
--   See our other Bazel rules, especially those built for rules_js, such as rules_ts for TypeScript: https://github.com/aspect-build
+- _Need help?_ This ruleset has support provided by https://aspect.dev.
+- See our other Bazel rules, especially those built for rules_js, such as rules_ts for TypeScript: https://github.com/aspect-build
 
 ## Installation
 
