@@ -5,8 +5,6 @@ exports_files([
     "junit_reporter.cjs",
 ])
 
-# gazelle:exclude v*.*.*/*
-
 bzl_library(
     name = "jasmine_test",
     # keep

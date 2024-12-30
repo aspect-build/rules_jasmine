@@ -17,20 +17,3 @@ update_docs(
     # "Stardoc documentation generation failed: File /home/runner/.cache/bazel/_bazel_runner/49ae4abee64f46f5e03b51e3020410d1/sandbox/linux-sandbox/168/execroot/_main/bazel-out/k8-opt-exec-2B5CBBC6/bin/docs/jasmine_test_stardoc.runfiles/_main/jasmine/private/jasmine_test.bzl imported '@aspect_rules_js//js:libs.bzl', yet /home/runner/.cache/bazel/_bazel_runner/49ae4abee64f46f5e03b51e3020410d1/sandbox/linux-sandbox/168/execroot/_main/bazel-out/k8-opt-exec-2B5CBBC6/bin/docs/jasmine_test_stardoc.runfiles/aspect_rules_js/js/libs.bzl was not found."
     tags = ["skip-on-bazel6"],
 )
-
-# Demonstration delivery target for Aspect Workflows.
-# In the future this could be wired up to push to a demonstration S3 bucket.
-sh_binary(
-    name = "docs_delivery_only_on_change",
-    srcs = ["delivery.sh"],
-    data = glob(["*.md"]),
-    tags = ["deliverable"],
-)
-
-# Demonstration delivery target for Aspect Workflows.
-# In the future this could be wired up to push to a demonstration S3 bucket.
-sh_binary(
-    name = "docs_delivery",
-    srcs = ["delivery.sh"],
-    data = glob(["*.md"]),
-)
