@@ -1,0 +1,6 @@
+# Set `queue` to the `queue` of the desired runner group to run this job on
+queue: aspect-default
+tasks:
+  - test:
+      targets:
+        - //docs:update_test
