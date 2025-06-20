@@ -75,6 +75,11 @@ jobs:
           - os: windows
             bazel-version:
               major: 6
+          - os: ubuntu
+            folder: .
+            bazel-version:
+              major: 7
+            bzlmod: 1
 
     steps:
       - uses: actions/checkout@v4
