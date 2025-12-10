@@ -46,7 +46,7 @@ def jasmine_test(
     entry_point = "_{}_jasmine_runner.cjs".format(name)
     copy_file(
         name = "_{}_copy_jasmine_runner".format(name),
-        src = "@aspect_rules_jasmine//jasmine/private:runner.cjs",
+        src = Label("@aspect_rules_jasmine//jasmine/private:runner.cjs"),
         out = entry_point,
     )
 
@@ -57,7 +57,7 @@ def jasmine_test(
         junit_reporter = "_{}_jasmine_junit_reporter.cjs".format(name)
         copy_file(
             name = "_{}_copy_jasmine_junit_reporter".format(name),
-            src = "@aspect_rules_jasmine//jasmine/private:junit_reporter.cjs",
+            src = Label("@aspect_rules_jasmine//jasmine/private:junit_reporter.cjs"),
             out = junit_reporter,
         )
         data.append("{}/jasmine-reporters".format(node_modules))
@@ -69,7 +69,7 @@ def jasmine_test(
         name = name,
         config = config,
         enable_runfiles = select({
-            "@aspect_bazel_lib//lib:enable_runfiles": True,
+            Label("@aspect_bazel_lib//lib:enable_runfiles"): True,
             "//conditions:default": False,
         }),
         entry_point = entry_point,
