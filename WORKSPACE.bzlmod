@@ -1,0 +1,9 @@
+load("@aspect_rules_lint//format:repositories.bzl", "fetch_shfmt")
+load("@buildifier_prebuilt//:defs.bzl", "buildifier_prebuilt_register_toolchains")
+load("@buildifier_prebuilt//:deps.bzl", "buildifier_prebuilt_deps")
+
+buildifier_prebuilt_deps()
+
+buildifier_prebuilt_register_toolchains()
+
+fetch_shfmt()
