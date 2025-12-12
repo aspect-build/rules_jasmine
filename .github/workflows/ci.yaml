@@ -67,19 +67,13 @@ jobs:
           - "e2e/jasmine_test"
           - "e2e/smoke"
         exclude:
-          # Don't test MacOS and Windows against secondary bazel version to minimize minutes (billed at 10X and 2X respectively)
-          # https://docs.github.com/en/billing/managing-billing-for-github-actions/about-billing-for-github-actions#included-storage-and-minutes
+          # Exclude MacOS by default, will opt-in to includes
           - os: macos
-            bazel-version:
-              major: 6
+          # Exclude Windows default, will opt-in to includes
           - os: windows
-            bazel-version:
-              major: 6
-          - os: ubuntu
-            folder: .
-            bazel-version:
-              major: 7
-            bzlmod: 1
+          # No WORKSPACE in the root
+          - folder: 1
+            bzlmod: 0
 
     steps:
       - uses: actions/checkout@v4
@@ -87,10 +81,14 @@ jobs:
       - name: Mount bazel caches
         uses: actions/cache@v4
         with:
+          # Cache the --dist_cache and --repository_cache directories (see ci.bazelrc)
+          # and the default bazel output (https://bazel.build/remote/output-directories#layout)
+          # and bazelisk cache.
           path: |
-            ~/.cache/bazel-disk-cache
-            ~/.cache/bazel-repository-cache
-            ~/.cache/xdg-cache
+              ~/.cache/bazel-disk-cache
+              ~/.cache/bazel-repository-cache
+              ~/.cache/bazel
+              ~/.cache/bazelisk
           key: bazel-cache-${{ matrix.bazel-version.version }}-${{ matrix.bzlmod }}-${{ matrix.os }}-${{ matrix.folder }}-${{ hashFiles('.bazelrc', '.bazelversion', '**/BUILD', '**/BUILD.bazel', '**/*.bzl', 'WORKSPACE', 'WORKSPACE.bazel', 'WORKSPACE.bzlmod', 'MODULE.bazel') }}
           restore-keys: bazel-cache-${{ matrix.bazel-version.version }}-${{ matrix.bzlmod }}-${{ matrix.os }}-${{ matrix.folder }}-
 
@@ -128,5 +126,3 @@ jobs:
             --build_tag_filters=-skip-on-bazel${{ matrix.bazel-version.major }} \
             --enable_bzlmod=${{ matrix.bzlmod }} \
             //...
-        env:
-          XDG_CACHE_HOME: ~/.cache/xdg-cache # bazelisk will download bazel to here
