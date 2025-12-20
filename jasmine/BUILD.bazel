@@ -23,5 +23,5 @@ bzl_library(
 starlark_doc_extract(
     name = "defs.docs",
     src = "defs.bzl",
-    deps = ["defs"],
+    deps = [":defs"],
 )
