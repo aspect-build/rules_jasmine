@@ -17,9 +17,7 @@ rules_jasmine is just a part of what Aspect provides:
 
 To run just the jasmine tests in a test pattern, you can use `bazel test --test_lang_filters=jasmine [target pattern...]`.
 
-API Docs
-
-- [jasmine_test](./docs/jasmine_test.md): runs Jasmine under `bazel test`
+API Docs: https://registry.bazel.build/docs/aspect_rules_jasmine
 
 See usage examples in the [`examples/`](https://github.com/aspect-build/rules_jasmine/tree/main/examples/) directory.
 

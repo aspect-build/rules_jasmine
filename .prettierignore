@@ -1,3 +1,2 @@
 .github/workflows/.aspect-workflows-reusable.yaml
 **/pnpm-lock.yaml
-docs/*.md
