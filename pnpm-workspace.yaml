@@ -1,0 +1,4 @@
+packages:
+  - 'jasmine/tests/jasmine4'
+  - 'jasmine/tests/jasmine5'
+  - 'jasmine/tests/jasmine6'

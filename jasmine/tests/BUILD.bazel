@@ -1,108 +1,127 @@
+load("@aspect_bazel_lib//lib:copy_to_bin.bzl", "copy_to_bin")
 load("//jasmine:defs.bzl", "jasmine_test")
 
-jasmine_test(
-    name = "junit_reporter",
-    args = [
-        "**/*.test.js",
+copy_to_bin(
+    name = "junit_reporter.test",
+    srcs = ["junit_reporter.test.js"],
+    visibility = [
+        "//jasmine/tests/jasmine4:__subpackages__",
+        "//jasmine/tests/jasmine5:__subpackages__",
+        "//jasmine/tests/jasmine6:__subpackages__",
     ],
-    data = ["junit_reporter.test.js"],
-    node_modules = "//:node_modules",
 )
 
-jasmine_test(
-    name = "focused",
-    args = [
-        "**/*.test.js",
+copy_to_bin(
+    name = "cjs.test",
+    srcs = ["cjs.test.cjs"],
+    visibility = [
+        "//jasmine/tests/jasmine4:__subpackages__",
+        "//jasmine/tests/jasmine5:__subpackages__",
+        "//jasmine/tests/jasmine6:__subpackages__",
     ],
-    data = ["focused.test.js"],
-    expected_exit_code = 2,
-    node_modules = "//:node_modules",
 )
 
-jasmine_test(
-    name = "exclusions",
-    args = [
-        "**/*.test.js",
+copy_to_bin(
+    name = "config_file.test",
+    srcs = [
+        "config_file.test.js",
     ],
-    data = ["exclusions.test.js"],
-    node_modules = "//:node_modules",
+    visibility = [
+        "//jasmine/tests/jasmine4:__subpackages__",
+        "//jasmine/tests/jasmine5:__subpackages__",
+        "//jasmine/tests/jasmine6:__subpackages__",
+    ],
 )
 
-jasmine_test(
-    name = "config",
-    config = "config_file.js",
-    data = ["config_file.test.js"],
-    node_modules = "//:node_modules",
+copy_to_bin(
+    name = "config_file",
+    srcs = [
+        "config_file.js",
+    ],
+    visibility = [
+        "//jasmine/tests/jasmine4:__subpackages__",
+        "//jasmine/tests/jasmine5:__subpackages__",
+        "//jasmine/tests/jasmine6:__subpackages__",
+    ],
 )
 
-jasmine_test(
-    name = "stack",
-    args = [
-        "**/*.test.js",
+copy_to_bin(
+    name = "esm.test",
+    srcs = ["esm.test.mjs"],
+    visibility = [
+        "//jasmine/tests/jasmine4:__subpackages__",
+        "//jasmine/tests/jasmine5:__subpackages__",
+        "//jasmine/tests/jasmine6:__subpackages__",
     ],
-    data = ["stack.test.js"],
-    node_modules = "//:node_modules",
+)
+
+copy_to_bin(
+    name = "exclusions.test",
+    srcs = ["exclusions.test.js"],
+    visibility = [
+        "//jasmine/tests/jasmine4:__subpackages__",
+        "//jasmine/tests/jasmine5:__subpackages__",
+        "//jasmine/tests/jasmine6:__subpackages__",
+    ],
+)
+
+copy_to_bin(
+    name = "fixed_args.test",
+    srcs = ["fixed_args.test.js"],
+    visibility = [
+        "//jasmine/tests/jasmine4:__subpackages__",
+        "//jasmine/tests/jasmine5:__subpackages__",
+        "//jasmine/tests/jasmine6:__subpackages__",
+    ],
+)
+
+copy_to_bin(
+    name = "failing.test",
+    srcs = ["failing.test.js"],
+    visibility = [
+        "//jasmine/tests/jasmine4:__subpackages__",
+        "//jasmine/tests/jasmine5:__subpackages__",
+        "//jasmine/tests/jasmine6:__subpackages__",
+    ],
+)
+
+copy_to_bin(
+    name = "focused.test",
+    srcs = ["focused.test.js"],
+    visibility = [
+        "//jasmine/tests/jasmine4:__subpackages__",
+        "//jasmine/tests/jasmine5:__subpackages__",
+        "//jasmine/tests/jasmine6:__subpackages__",
+    ],
+)
+
+copy_to_bin(
+    name = "shard.test",
+    srcs = ["shard.test.js"],
+    visibility = [
+        "//jasmine/tests/jasmine4:__subpackages__",
+        "//jasmine/tests/jasmine5:__subpackages__",
+        "//jasmine/tests/jasmine6:__subpackages__",
+    ],
+)
+
+copy_to_bin(
+    name = "stack.test",
+    srcs = ["stack.test.js"],
+    visibility = [
+        "//jasmine/tests/jasmine4:__subpackages__",
+        "//jasmine/tests/jasmine5:__subpackages__",
+        "//jasmine/tests/jasmine6:__subpackages__",
+    ],
 )
 
 jasmine_test(
     name = "config_chdir_package_name",
     chdir = package_name(),
-    config = "config_file.js",
-    data = ["config_file.test.js"],
-    node_modules = "//:node_modules",
-)
-
-jasmine_test(
-    name = "shard",
-    args = [
-        "**/*.test.js",
-        "--random=false",
+    config = ":config_file.js",
+    data = [
+        ":config_file.js",
+        ":config_file.test.js",
     ],
-    data = ["shard.test.js"],
-    node_modules = "//:node_modules",
-    shard_count = 3,
-)
-
-# Verify that the error code is propogated out from a failing spec
-jasmine_test(
-    name = "failing",
-    args = [
-        "**/*.test.js",
-        "--random=false",
-    ],
-    data = ["failing.test.js"],
-    expected_exit_code = 3,
-    node_modules = "//:node_modules",
-)
-
-jasmine_test(
-    name = "failing_shard",
-    args = [
-        "**/*.test.js",
-        "--random=false",
-    ],
-    data = ["failing.test.js"],
-    expected_exit_code = 3,
-    node_modules = "//:node_modules",
-    shard_count = 2,
-)
-
-jasmine_test(
-    name = "esm",
-    args = [
-        "**/*.test.mjs",
-        "--random=false",
-    ],
-    data = ["esm.test.mjs"],
-    node_modules = "//:node_modules",
-)
-
-jasmine_test(
-    name = "cjs",
-    args = [
-        "**/*.test.cjs",
-        "--random=false",
-    ],
-    data = ["cjs.test.cjs"],
     node_modules = "//:node_modules",
 )

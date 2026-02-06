@@ -1,5 +1,6 @@
 {
   "private": true,
+  "packageManager": "pnpm@8.15.5",
   "devDependencies": {
     "jasmine": "4.6.0",
     "jasmine-core": "4.6.0",

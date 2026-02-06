@@ -1,2 +1,5 @@
 e2e/
 node_modules
+jasmine/tests/jasmine4/node_modules
+jasmine/tests/jasmine5/node_modules
+jasmine/tests/jasmine6/node_modules
