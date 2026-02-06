@@ -1,0 +1,8 @@
+{
+  "private": true,
+  "devDependencies": {
+    "jasmine": "^6",
+    "jasmine-core": "^6",
+    "jasmine-reporters": "2.5.2"
+  }
+}
