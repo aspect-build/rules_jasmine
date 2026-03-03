@@ -1,3 +1,21 @@
+/**
+ * The prefix of the reason for skipping a spec due to sharding.
+ */
+const shardReasonPrefix = "Skipped: Assigned to shard";
+const reportedSkippedSpecs = [];
+
+jasmine.getEnv().addReporter({
+  specDone: (result) => {
+    // Test that the reporter is not reporting the skipped specs due to sharding.
+    if (
+      result.status === 'pending' &&
+      result.pendingReason?.startsWith(shardReasonPrefix)
+    ) {
+      reportedSkippedSpecs.push(result.fullName);
+    }
+  },
+});
+
 describe('assert sharding runs specs(it blocks) in the expected order and partitions equally over the available shards', () => {
     let testIsolationFailure = 0;
 
@@ -27,4 +45,16 @@ describe('assert sharding runs specs(it blocks) in the expected order and partit
     it('should run the sixth spec with the third spec in shard 3', () => {
       expect(testIsolationFailure).toBe(3);
     });
+});
+
+describe('sharding reporting', () => {
+  it('should not report shard skipped specs', () => {
+    // Test that the reporter is not reporting the skipped specs due to sharding.
+    if (reportedSkippedSpecs.length > 0) {
+      fail(
+        'Expected skipped specs to be filtered out from reports, but found: ' +
+          reportedSkippedSpecs.join(', '),
+      );
+    }
+  });
 });

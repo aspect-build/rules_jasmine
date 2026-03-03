@@ -4,6 +4,11 @@ const shardCount = Number(process.env.TEST_TOTAL_SHARDS);
 const shardIndex = Number(process.env.TEST_SHARD_INDEX);
 const shardStatusFile = process.env.TEST_SHARD_STATUS_FILE;
 
+/**
+ * The prefix of the reason for skipping a spec due to sharding.
+ */
+const shardReasonPrefix = "Skipped: Assigned to shard";
+
 if (shardCount) {
   const fs = require("node:fs");
   const jasmine = require("jasmine-core");
@@ -19,8 +24,53 @@ if (shardCount) {
   // Sharding protocol:
   // Tell Bazel that this test runner supports sharding by updating the last modified date of the
   // magic file
-  let fd = fs.openSync(shardStatusFile, "w");
+  const fd = fs.openSync(shardStatusFile, "w");
   fs.closeSync(fd);
+
+  // Safely override boot to intercept addReporter on the environment instance.
+  // This is to exclude the skipped specs due to sharding from the test results.
+  // Maintain the same behaviour between different versions of jasmine-core.
+  const originalBoot = jasmine.boot;
+  jasmine.boot = function () {
+    const j$ = originalBoot.apply(this, arguments);
+    const env = j$.getEnv();
+    const originalAddReporter = env.addReporter;
+
+    // Use Object.defineProperty to bypass the monkey-patching detection setter
+    // which usually triggers the "Monkey patching detected" warning.
+    Object.defineProperty(env, "addReporter", {
+      value: function (reporter) {
+        const wrappedReporter = new Proxy(reporter, {
+          get(target, prop) {
+            if (prop === "specDone") {
+              return function (result) {
+                if (
+                  result.status === "pending" &&
+                  result.pendingReason?.startsWith(shardReasonPrefix)
+                ) {
+                  // These specs are skipped due to sharding, so we don't want to report them as pending.
+                  return;
+                }
+
+                return target.specDone?.apply(target, arguments);
+              };
+            }
+
+            const value = target[prop];
+
+            return typeof value === "function" ? value.bind(target) : value;
+          },
+        });
+
+        return originalAddReporter.call(this, wrappedReporter);
+      },
+      configurable: true,
+      writable: true,
+      enumerable: true,
+    });
+
+    return j$;
+  };
 
   const Order = jasmine.Order;
   jasmine.Order = ($j) => {
@@ -44,7 +94,7 @@ if (shardCount) {
           if (assignedShard !== shardIndex) {
             // Bazel shards are not 0 indexed, so we add 1 to the shard index.
             item.exclude(
-              `Skipped: Assigned to shard ${assignedShard + 1} per strategy (Current: ${shardIndex + 1}).`,
+              `${shardReasonPrefix} ${assignedShard + 1} per strategy (Current: ${shardIndex + 1}).`,
             );
           } else {
             filterItems.push(item);
