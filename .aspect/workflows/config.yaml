@@ -1,10 +1,44 @@
 # See https://docs.aspect.build/workflows/configuration
+workspaces:
+  .: {}
+  e2e/jasmine_test:
+    tasks: &skip-format-buildifier
+      - format:
+          without: true
+      - buildifier:
+          without: true
+  e2e/smoke:
+    tasks: *skip-format-buildifier
+
 tasks:
   - format:
       queue: aspect-medium
   - buildifier:
       queue: aspect-medium
   - test:
+      name: 'Test (Bazel 7)'
+      env:
+        USE_BAZEL_VERSION: 7.x
+      bazel:
+        flags:
+          - --test_tag_filters=-skip-on-bazel7
+          - --build_tag_filters=-skip-on-bazel7
+  - test:
+      name: 'Test (Bazel 8)'
+      env:
+        USE_BAZEL_VERSION: 8.x
+      bazel:
+        flags:
+          - --test_tag_filters=-skip-on-bazel8
+          - --build_tag_filters=-skip-on-bazel8
+  - test:
+      name: 'Test (Bazel 9)'
+      env:
+        USE_BAZEL_VERSION: 9.x
+      bazel:
+        flags:
+          - --test_tag_filters=-skip-on-bazel9
+          - --build_tag_filters=-skip-on-bazel9
   - finalization:
       queue: aspect-small
 notifications:
