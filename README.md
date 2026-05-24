@@ -1,5 +1,9 @@
 # Bazel rules for Jasmine
 
+> [!NOTE]
+> This repository uses the [Aspect CLI](https://github.com/aspect-build/aspect-cli) for CI and local development.
+> See the [docs](https://docs.aspect.build/cli/overview) and [install instructions](https://docs.aspect.build/cli/install) to get started.
+
 Runs the [Jasmine](https://jasmine.github.io/) JS testing tool under Bazel.
 
 rules_jasmine is just a part of what Aspect provides:
