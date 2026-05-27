@@ -1,8 +1,8 @@
 """Aspect CLI configuration."""
 
 load("@aspect//feature/artifacts.axl", "ArtifactUpload")
-load("@aspect//traits.axl", "BazelTrait")
 load("@aspect//format.axl", "format")
+load("@aspect//traits.axl", "BazelTrait")
 
 # `aspect buildifier` — alias of `aspect format` preset to the Starlark-only formatter target.
 # CI and local users can run `aspect buildifier` to format Starlark files only.
