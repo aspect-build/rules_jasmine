@@ -1,0 +1,6 @@
+load("@npm//:defs.bzl", "npm_link_all_packages")
+load("//jasmine/tests:def.bzl", "generate_jasmine_tests")
+
+npm_link_all_packages(name = "node_modules")
+
+generate_jasmine_tests()

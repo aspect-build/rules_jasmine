@@ -2,3 +2,4 @@ packages:
   - 'jasmine/tests/jasmine4'
   - 'jasmine/tests/jasmine5'
   - 'jasmine/tests/jasmine6'
+  - 'jasmine/tests/jasmine7'
